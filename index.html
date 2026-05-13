@@ -3,216 +3,221 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KPI Cabistas PMO | Proxxima Telecom</title>
+<title>KPIs PMO | Proxxima Telecom</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #0b1220;
-  --card: #131c2f;
-  --card2: #1a253d;
-  --border: #233152;
-  --text: #e5edff;
-  --text-dim: #93a3c4;
-  --accent: #4ade80;
-  --accent2: #38bdf8;
-  --accent3: #f59e0b;
-  --danger: #f87171;
-  --renato: #38bdf8;
-  --edvan: #4ade80;
-  --bernardo: #f59e0b;
-  --meta: #f87171;
+  --bg:#0b1220; --card:#131c2f; --card2:#1a253d; --border:#233152;
+  --text:#e5edff; --text-dim:#93a3c4;
+  --accent:#4ade80; --accent2:#38bdf8; --accent3:#f59e0b; --danger:#f87171;
+  --renato:#38bdf8; --edvan:#4ade80; --bernardo:#f59e0b;
 }
-body {
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(135deg, #0b1220 0%, #131c2f 100%);
-  color: var(--text);
-  min-height: 100vh;
-  padding: 24px;
-}
-.container { max-width: 1400px; margin: 0 auto; }
-header {
-  display: flex; flex-direction: column; gap: 8px;
-  margin-bottom: 24px; padding-bottom: 24px;
-  border-bottom: 1px solid var(--border);
-}
-.brand { display: flex; align-items: center; gap: 14px; }
-.logo {
-  width: 52px; height: 52px; border-radius: 12px;
-  background: linear-gradient(135deg, #38bdf8, #4ade80);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px; font-weight: 800; color: #0b1220;
-}
-h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
-.subtitle { color: var(--text-dim); font-size: 14px; }
-.controls {
-  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
-  margin-top: 16px;
-}
-.control-group { display: flex; align-items: center; gap: 8px; position: relative; }
-label { font-size: 13px; color: var(--text-dim); font-weight: 500; }
+body { font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:linear-gradient(135deg,#0b1220 0%,#131c2f 100%); color:var(--text);
+  min-height:100vh; padding:24px; }
+.container { max-width:1400px; margin:0 auto; }
+header { display:flex; flex-direction:column; gap:8px; margin-bottom:24px;
+  padding-bottom:24px; border-bottom:1px solid var(--border); }
+.brand { display:flex; align-items:center; gap:14px; }
+.logo { width:52px; height:52px; border-radius:12px;
+  background:linear-gradient(135deg,#38bdf8,#4ade80);
+  display:flex; align-items:center; justify-content:center;
+  font-size:26px; font-weight:800; color:#0b1220; }
+h1 { font-size:28px; font-weight:700; letter-spacing:-0.02em; }
+.subtitle { color:var(--text-dim); font-size:14px; }
+
+.tabs { display:flex; gap:4px; margin-bottom:24px; border-bottom:1px solid var(--border); }
+.tab-btn { background:transparent; color:var(--text-dim); border:none;
+  padding:12px 20px; font-size:14px; font-weight:600; cursor:pointer;
+  border-bottom:3px solid transparent; margin-bottom:-1px;
+  font-family:inherit; display:flex; align-items:center; gap:8px; transition:all .2s; }
+.tab-btn:hover { color:var(--text); }
+.tab-btn.active { color:var(--text); border-bottom-color:var(--accent2); }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+
+.controls { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:20px; }
+.control-group { display:flex; align-items:center; gap:8px; position:relative; }
+label { font-size:13px; color:var(--text-dim); font-weight:500; }
 select, .ms-trigger {
-  background: var(--card2); color: var(--text);
-  border: 1px solid var(--border); border-radius: 8px;
-  padding: 8px 12px; font-size: 14px; font-family: inherit;
-  cursor: pointer; outline: none; min-width: 200px;
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
-}
-select:focus, .ms-trigger:focus, .ms-trigger.open { border-color: var(--accent2); }
-.ms-trigger .arrow { font-size: 10px; color: var(--text-dim); transition: transform .2s; }
-.ms-trigger.open .arrow { transform: rotate(180deg); }
-.ms-panel {
-  position: absolute; top: calc(100% + 6px); left: 0; right: 0; min-width: 240px;
-  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-  padding: 8px; display: none; z-index: 50; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  max-height: 320px; overflow: auto;
-}
-.ms-panel.open { display: block; }
-.ms-toolbar { display: flex; gap: 6px; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
-.ms-toolbar button {
-  flex: 1; background: var(--card2); color: var(--text-dim); border: 1px solid var(--border);
-  padding: 4px 8px; font-size: 11px; border-radius: 5px; cursor: pointer; font-weight: 600;
-}
-.ms-toolbar button:hover { color: var(--accent2); border-color: var(--accent2); }
-.ms-option {
-  display: flex; align-items: center; gap: 8px; padding: 7px 8px;
-  border-radius: 6px; cursor: pointer; font-size: 13px;
-}
-.ms-option:hover { background: var(--card2); }
-.ms-option input { accent-color: var(--accent2); cursor: pointer; }
+  background:var(--card2); color:var(--text); border:1px solid var(--border);
+  border-radius:8px; padding:8px 12px; font-size:14px; font-family:inherit;
+  cursor:pointer; outline:none; min-width:200px;
+  display:flex; align-items:center; justify-content:space-between; gap:8px; }
+select:focus, .ms-trigger:focus, .ms-trigger.open { border-color:var(--accent2); }
+.ms-trigger .arrow { font-size:10px; color:var(--text-dim); transition:transform .2s; }
+.ms-trigger.open .arrow { transform:rotate(180deg); }
+.ms-panel { position:absolute; top:calc(100% + 6px); left:0; right:0; min-width:240px;
+  background:var(--card); border:1px solid var(--border); border-radius:8px;
+  padding:8px; display:none; z-index:50; box-shadow:0 8px 24px rgba(0,0,0,0.4);
+  max-height:320px; overflow:auto; }
+.ms-panel.open { display:block; }
+.ms-toolbar { display:flex; gap:6px; margin-bottom:6px; padding-bottom:6px;
+  border-bottom:1px solid var(--border); }
+.ms-toolbar button { flex:1; background:var(--card2); color:var(--text-dim);
+  border:1px solid var(--border); padding:4px 8px; font-size:11px; border-radius:5px;
+  cursor:pointer; font-weight:600; }
+.ms-toolbar button:hover { color:var(--accent2); border-color:var(--accent2); }
+.ms-option { display:flex; align-items:center; gap:8px; padding:7px 8px;
+  border-radius:6px; cursor:pointer; font-size:13px; }
+.ms-option:hover { background:var(--card2); }
+.ms-option input { accent-color:var(--accent2); cursor:pointer; }
 
-.kpi-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px; margin-bottom: 24px;
-}
-.kpi-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 14px; padding: 20px;
-  position: relative; overflow: hidden;
-}
-.kpi-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: var(--accent2);
-}
-.kpi-card.renato::before { background: var(--renato); }
-.kpi-card.edvan::before { background: var(--edvan); }
-.kpi-card.bernardo::before { background: var(--bernardo); }
-.kpi-card.total::before { background: linear-gradient(90deg, var(--renato), var(--edvan), var(--bernardo)); }
+.kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:16px; margin-bottom:24px; }
+.kpi-card { background:var(--card); border:1px solid var(--border);
+  border-radius:14px; padding:20px; position:relative; overflow:hidden; }
+.kpi-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px;
+  background:var(--accent2); }
+.kpi-card.renato::before { background:var(--renato); }
+.kpi-card.edvan::before { background:var(--edvan); }
+.kpi-card.bernardo::before { background:var(--bernardo); }
+.kpi-card.total::before { background:linear-gradient(90deg,var(--renato),var(--edvan),var(--bernardo)); }
+.kpi-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.kpi-name { font-size:14px; color:var(--text-dim); font-weight:600;
+  text-transform:uppercase; letter-spacing:0.05em; }
+.avatar { width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; color:#0b1220; font-size:14px; }
+.avatar.renato { background:var(--renato); }
+.avatar.edvan { background:var(--edvan); }
+.avatar.bernardo { background:var(--bernardo); }
+.kpi-value { font-size:32px; font-weight:800; letter-spacing:-0.02em; margin-bottom:6px; }
+.kpi-label { font-size:13px; color:var(--text-dim); }
 
-.kpi-header {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 12px;
-}
-.kpi-name { font-size: 14px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-.avatar {
-  width: 36px; height: 36px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; color: #0b1220; font-size: 14px;
-}
-.avatar.renato { background: var(--renato); }
-.avatar.edvan { background: var(--edvan); }
-.avatar.bernardo { background: var(--bernardo); }
+.meta-bar-wrap { margin-top:14px; }
+.meta-bar-info { display:flex; justify-content:space-between; font-size:12px;
+  color:var(--text-dim); margin-bottom:6px; }
+.meta-bar-info b { color:var(--text); }
+.meta-bar { height:14px; background:var(--card2); border-radius:999px;
+  position:relative; margin-top:18px; }
+.meta-bar .track { position:absolute; inset:0; border-radius:999px; overflow:hidden; }
+.meta-bar .fill { height:100%; border-radius:999px; transition:width .6s ease; }
+.meta-bar .fill.ok { background:linear-gradient(90deg,#4ade80,#22c55e); }
+.meta-bar .fill.warn { background:linear-gradient(90deg,#f59e0b,#f97316); }
+.meta-bar .fill.bad { background:linear-gradient(90deg,#f87171,#ef4444); }
+.meta-bar .fill.training { background:linear-gradient(90deg,#f59e0b,#facc15); }
+.meta-bar .meta-mark { position:absolute; top:-5px; bottom:-5px; width:3px;
+  background:#fff; border-radius:2px; box-shadow:0 0 0 2px rgba(15,23,42,0.7); z-index:2; }
+.meta-bar .meta-mark::before { content:'META'; position:absolute; top:-16px; left:50%;
+  transform:translateX(-50%); font-size:9px; font-weight:700; color:#fff;
+  background:rgba(15,23,42,0.85); padding:1px 5px; border-radius:3px;
+  letter-spacing:0.06em; white-space:nowrap; border:1px solid rgba(255,255,255,0.25); }
+.meta-bar .marker { position:absolute; top:50%; transform:translate(-50%,-50%);
+  width:22px; height:22px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:800; color:#0b1220; border:2px solid #0b1220;
+  z-index:3; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+.meta-bar .marker.up { background:#4ade80; }
+.meta-bar .marker.down { background:#f87171; color:#fff; }
+.meta-bar .marker.train { background:#fbbf24; }
 
-.kpi-value { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
-.kpi-label { font-size: 13px; color: var(--text-dim); }
+.delta-chip { display:inline-flex; align-items:center; gap:5px;
+  padding:3px 9px; border-radius:999px; font-size:12px; font-weight:700; margin-left:4px; }
+.delta-chip.up { background:rgba(74,222,128,0.18); color:#4ade80;
+  border:1px solid rgba(74,222,128,0.4); }
+.delta-chip.down { background:rgba(248,113,113,0.18); color:#f87171;
+  border:1px solid rgba(248,113,113,0.4); }
+.delta-chip.train { background:rgba(245,158,11,0.18); color:#fbbf24;
+  border:1px solid rgba(245,158,11,0.4); }
 
-.meta-bar-wrap { margin-top: 14px; }
-.meta-bar-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-dim); margin-bottom: 6px; }
-.meta-bar-info b { color: var(--text); }
-.meta-bar { height: 14px; background: var(--card2); border-radius: 999px; position: relative; margin-top: 18px; }
-.meta-bar .track { position: absolute; inset: 0; border-radius: 999px; overflow: hidden; }
-.meta-bar .fill { height: 100%; border-radius: 999px; transition: width .6s ease; }
-.meta-bar .fill.ok { background: linear-gradient(90deg, #4ade80, #22c55e); }
-.meta-bar .fill.warn { background: linear-gradient(90deg, #f59e0b, #f97316); }
-.meta-bar .fill.bad { background: linear-gradient(90deg, #f87171, #ef4444); }
-.meta-bar .fill.training { background: linear-gradient(90deg, #f59e0b, #facc15); }
-.meta-bar .meta-mark {
-  position: absolute; top: -5px; bottom: -5px; width: 3px;
-  background: #fff; border-radius: 2px; box-shadow: 0 0 0 2px rgba(15,23,42,0.7);
-  z-index: 2;
-}
-.meta-bar .meta-mark::before {
-  content: 'META'; position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
-  font-size: 9px; font-weight: 700; color: #fff; background: rgba(15,23,42,0.85);
-  padding: 1px 5px; border-radius: 3px; letter-spacing: 0.06em; white-space: nowrap;
-  border: 1px solid rgba(255,255,255,0.25);
-}
-.meta-bar .marker {
-  position: absolute; top: 50%; transform: translate(-50%, -50%);
-  width: 22px; height: 22px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 800; color: #0b1220;
-  border: 2px solid #0b1220; z-index: 3;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-}
-.meta-bar .marker.up { background: #4ade80; }
-.meta-bar .marker.down { background: #f87171; color: #fff; }
-.meta-bar .marker.train { background: #fbbf24; }
-.delta-chip {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 3px 9px; border-radius: 999px;
-  font-size: 12px; font-weight: 700;
-  margin-left: 4px;
-}
-.delta-chip.up { background: rgba(74,222,128,0.18); color: #4ade80; border: 1px solid rgba(74,222,128,0.4); }
-.delta-chip.down { background: rgba(248,113,113,0.18); color: #f87171; border: 1px solid rgba(248,113,113,0.4); }
-.delta-chip.train { background: rgba(245,158,11,0.18); color: #fbbf24; border: 1px solid rgba(245,158,11,0.4); }
-.training-note {
-  display: flex; gap: 8px; align-items: flex-start;
-  background: rgba(245,158,11,0.10); border: 1px solid rgba(245,158,11,0.3);
-  padding: 8px 10px; border-radius: 8px; margin-top: 10px;
-  font-size: 12px; color: #fde68a; line-height: 1.4;
-}
-.training-note .ti { font-size: 14px; }
-.training-note b { color: var(--accent3); }
+.training-note { display:flex; gap:8px; align-items:flex-start;
+  background:rgba(245,158,11,0.10); border:1px solid rgba(245,158,11,0.3);
+  padding:8px 10px; border-radius:8px; margin-top:10px;
+  font-size:12px; color:#fde68a; line-height:1.4; }
+.training-note .ti { font-size:14px; }
+.training-note b { color:var(--accent3); }
 
-.kpi-stats {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-  margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);
-}
-.kpi-stat { text-align: center; }
-.kpi-stat .num { font-size: 16px; font-weight: 700; color: var(--text); }
-.kpi-stat .lbl { font-size: 11px; color: var(--text-dim); text-transform: uppercase; }
+.kpi-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+  margin-top:14px; padding-top:14px; border-top:1px solid var(--border); }
+.kpi-stat { text-align:center; }
+.kpi-stat .num { font-size:16px; font-weight:700; color:var(--text); }
+.kpi-stat .lbl { font-size:11px; color:var(--text-dim); text-transform:uppercase; }
 
-.chart-grid {
-  display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px;
-}
-@media (max-width: 900px) { .chart-grid { grid-template-columns: 1fr; } }
+.chart-grid { display:grid; grid-template-columns:2fr 1fr; gap:16px; margin-bottom:24px; }
+@media (max-width:900px) { .chart-grid { grid-template-columns:1fr; } }
 
-.panel {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 14px; padding: 20px;
-}
-.panel-title { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
-.panel-subtitle { font-size: 12px; color: var(--text-dim); margin-bottom: 14px; }
+.panel { background:var(--card); border:1px solid var(--border);
+  border-radius:14px; padding:20px; }
+.panel-title { font-size:16px; font-weight:700; margin-bottom:14px; }
+.panel-subtitle { font-size:12px; color:var(--text-dim); margin-bottom:14px; }
+.chart-container { position:relative; height:320px; }
 
-.chart-container { position: relative; height: 320px; }
+.metric-list { display:flex; flex-direction:column; gap:12px; }
+.metric-item { display:flex; justify-content:space-between; align-items:center;
+  padding:10px 12px; background:var(--card2); border-radius:8px; }
+.metric-item .name { font-size:13px; }
+.metric-item .val { font-size:14px; font-weight:700; color:var(--accent2); }
 
-.metric-list { display: flex; flex-direction: column; gap: 12px; }
-.metric-item { display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 12px; background: var(--card2); border-radius: 8px; }
-.metric-item .name { font-size: 13px; }
-.metric-item .val { font-size: 14px; font-weight: 700; color: var(--accent2); }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+thead th { text-align:left; padding:10px 12px; background:var(--card2);
+  color:var(--text-dim); font-weight:600; text-transform:uppercase; font-size:11px;
+  letter-spacing:0.05em; position:sticky; top:0; }
+tbody td { padding:10px 12px; border-bottom:1px solid var(--border); }
+tbody tr:hover { background:rgba(56,189,248,0.05); }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px;
+  font-size:11px; font-weight:600; }
+.tag.renato { background:rgba(56,189,248,0.15); color:var(--renato); }
+.tag.edvan { background:rgba(74,222,128,0.15); color:var(--edvan); }
+.tag.bernardo { background:rgba(245,158,11,0.15); color:var(--bernardo); }
+.table-wrap { max-height:480px; overflow:auto; border-radius:10px; border:1px solid var(--border); }
+.num-cell { text-align:right; font-variant-numeric:tabular-nums; }
 
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-thead th {
-  text-align: left; padding: 10px 12px;
-  background: var(--card2); color: var(--text-dim);
-  font-weight: 600; text-transform: uppercase; font-size: 11px;
-  letter-spacing: 0.05em;
-  position: sticky; top: 0;
-}
-tbody td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
-tbody tr:hover { background: rgba(56,189,248,0.05); }
-.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-.tag.renato { background: rgba(56,189,248,0.15); color: var(--renato); }
-.tag.edvan { background: rgba(74,222,128,0.15); color: var(--edvan); }
-.tag.bernardo { background: rgba(245,158,11,0.15); color: var(--bernardo); }
-.table-wrap { max-height: 480px; overflow: auto; border-radius: 10px; border: 1px solid var(--border); }
-.num-cell { text-align: right; font-variant-numeric: tabular-nums; }
+footer { margin-top:24px; padding-top:18px; border-top:1px solid var(--border);
+  color:var(--text-dim); font-size:12px; text-align:center; }
 
-footer { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border);
-  color: var(--text-dim); font-size: 12px; text-align: center; }
+/* PMO Tab */
+.podium { display:grid; grid-template-columns:1fr 1.2fr 1fr; gap:16px;
+  align-items:end; margin-bottom:24px; }
+@media (max-width:800px) { .podium { grid-template-columns:1fr; } }
+.podium-card { background:var(--card); border:1px solid var(--border);
+  border-radius:14px; padding:22px; text-align:center; position:relative; }
+.podium-card.first { border-color:rgba(250,204,21,0.5);
+  background:linear-gradient(180deg,rgba(250,204,21,0.08),var(--card));
+  transform:translateY(-12px); }
+.podium-card.second { border-color:rgba(148,163,184,0.5); }
+.podium-card.third { border-color:rgba(180,83,9,0.5); }
+.podium-medal { font-size:38px; margin-bottom:6px; }
+.podium-pos { font-size:12px; font-weight:700; letter-spacing:0.1em; color:var(--text-dim); }
+.podium-name { font-size:16px; font-weight:700; margin:6px 0 10px; }
+.podium-score { font-size:36px; font-weight:800; letter-spacing:-0.02em; }
+.podium-cls { font-size:11px; padding:2px 10px; border-radius:999px;
+  display:inline-block; margin-top:6px; font-weight:700; }
+.podium-cls.excel { background:rgba(74,222,128,0.18); color:#4ade80;
+  border:1px solid rgba(74,222,128,0.4); }
+.podium-cls.bom { background:rgba(56,189,248,0.18); color:#38bdf8;
+  border:1px solid rgba(56,189,248,0.4); }
+.podium-cls.reg { background:rgba(245,158,11,0.18); color:#fbbf24;
+  border:1px solid rgba(245,158,11,0.4); }
+
+.kpi-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:14px; margin-bottom:22px; }
+.kpi-mini { background:var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:2px; }
+.kpi-mini .lbl { font-size:11px; text-transform:uppercase;
+  letter-spacing:0.05em; color:var(--text-dim); font-weight:600; }
+.kpi-mini .val { font-size:26px; font-weight:800; letter-spacing:-0.02em; }
+.kpi-mini .sub { font-size:11px; color:var(--text-dim); }
+.kpi-mini.bad .val { color:#f87171; }
+
+.pillar-bars { display:flex; flex-direction:column; gap:10px; }
+.pillar-row { display:grid; grid-template-columns:90px 1fr 50px;
+  gap:10px; align-items:center; font-size:13px; }
+.pillar-row .pname { color:var(--text-dim); font-weight:600; font-size:12px; }
+.pillar-row .ptrack { height:8px; background:var(--card2); border-radius:999px; overflow:hidden; }
+.pillar-row .pfill { height:100%; border-radius:999px; transition:width .6s; }
+.pillar-row .pval { text-align:right; font-weight:700; font-variant-numeric:tabular-nums; }
+
+.insight-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:800px) { .insight-grid { grid-template-columns:1fr; } }
+.insight { background:var(--card2); border-left:3px solid var(--accent2);
+  padding:12px 14px; border-radius:8px; font-size:13px; line-height:1.5; }
+.insight.good { border-left-color:#4ade80; }
+.insight.bad { border-left-color:#f87171; }
+.insight .ititle { font-weight:700; margin-bottom:4px; font-size:13px; }
+.insight.good .ititle { color:#4ade80; }
+.insight.bad .ititle { color:#f87171; }
 </style>
 </head>
 <body>
@@ -221,17 +226,26 @@ footer { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border
     <div class="brand">
       <div class="logo">KP</div>
       <div>
-        <h1>KPI Cabistas PMO</h1>
-        <div class="subtitle">Proxxima Telecom · Dashboard de Pontuação dos Colaboradores</div>
+        <h1>KPIs PMO &middot; Proxxima Telecom</h1>
+        <div class="subtitle">Painel consolidado: Cabistas em Campo + Produtividade do PMO</div>
       </div>
     </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="tab-cabistas">&#128736;&#65039; Cabistas PMO</button>
+    <button class="tab-btn" data-tab="tab-pmo">&#128202; Produtividade PMO</button>
+  </div>
+
+  <!-- ABA 1: CABISTAS PMO -->
+  <div id="tab-cabistas" class="tab-content active">
     <div class="controls">
       <div class="control-group">
         <label for="msTrigger">Filtrar por mês:</label>
         <div>
           <div id="msTrigger" class="ms-trigger" tabindex="0">
             <span id="msLabel">Todos os meses</span>
-            <span class="arrow">▼</span>
+            <span class="arrow">&#9660;</span>
           </div>
           <div id="msPanel" class="ms-panel">
             <div class="ms-toolbar">
@@ -252,59 +266,126 @@ footer { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border
         </select>
       </div>
     </div>
-  </header>
 
-  <div class="kpi-grid" id="kpiGrid"></div>
+    <div class="kpi-grid" id="kpiGrid"></div>
 
-  <div class="chart-grid">
-    <div class="panel">
-      <div class="panel-title">Pontuação ao longo do tempo</div>
-      <div class="panel-subtitle">Produção diária por colaborador (Meta diária = 1.000 pts)</div>
-      <div class="chart-container"><canvas id="lineChart"></canvas></div>
+    <div class="chart-grid">
+      <div class="panel">
+        <div class="panel-title">Pontuação ao longo do tempo</div>
+        <div class="panel-subtitle">Produção diária por colaborador (Meta diária = 1.000 pts)</div>
+        <div class="chart-container"><canvas id="lineChart"></canvas></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Distribuição por atividade</div>
+        <div class="panel-subtitle">Composição da pontuação (Postes, CTO, CEO, Deslocamento)</div>
+        <div class="chart-container"><canvas id="doughnutChart"></canvas></div>
+      </div>
     </div>
-    <div class="panel">
-      <div class="panel-title">Distribuição por atividade</div>
-      <div class="panel-subtitle">Composição da pontuação (Postes, CTO, CEO, Deslocamento)</div>
-      <div class="chart-container"><canvas id="doughnutChart"></canvas></div>
-    </div>
-  </div>
 
-  <div class="chart-grid" style="grid-template-columns: 1fr 1fr;">
-    <div class="panel">
-      <div class="panel-title">Acumulado vs Meta do Período</div>
-      <div class="panel-subtitle">Meta = 1.000 pts × dias trabalhados no período filtrado</div>
-      <div class="chart-container" style="height:280px"><canvas id="barChart"></canvas></div>
+    <div class="chart-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="panel">
+        <div class="panel-title">Acumulado vs Meta do Período</div>
+        <div class="panel-subtitle">Meta = 1.000 pts &times; dias trabalhados no período filtrado</div>
+        <div class="chart-container" style="height:280px"><canvas id="barChart"></canvas></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Sistema de Pontuação (Métricas)</div>
+        <div class="panel-subtitle">Pesos aplicados a cada atividade</div>
+        <div class="metric-list">
+          <div class="metric-item"><span class="name">&#127959;&#65039; Postes vistoriados</span><span class="val">2,5 pts/un.</span></div>
+          <div class="metric-item"><span class="name">&#128230; CTO instalado</span><span class="val">12,5 pts/un.</span></div>
+          <div class="metric-item"><span class="name">&#128225; CEO instalado</span><span class="val">22,2 pts/un.</span></div>
+          <div class="metric-item"><span class="name">&#128663; Deslocamento (hora)</span><span class="val">111 pts/h</span></div>
+          <div class="metric-item" style="border-top:2px solid var(--accent2);margin-top:6px;padding-top:14px"><span class="name"><b>&#127919; Meta diária</b></span><span class="val">1.000 pts</span></div>
+        </div>
+      </div>
     </div>
-    <div class="panel">
-      <div class="panel-title">Sistema de Pontuação (Métricas)</div>
-      <div class="panel-subtitle">Pesos aplicados a cada atividade</div>
-      <div class="metric-list">
-        <div class="metric-item"><span class="name">🏗️ Postes vistoriados</span><span class="val">2,5 pts/un.</span></div>
-        <div class="metric-item"><span class="name">📦 CTO instalado</span><span class="val">12,5 pts/un.</span></div>
-        <div class="metric-item"><span class="name">📡 CEO instalado</span><span class="val">22,2 pts/un.</span></div>
-        <div class="metric-item"><span class="name">🚗 Deslocamento (hora)</span><span class="val">111 pts/h</span></div>
-        <div class="metric-item" style="border-top:2px solid var(--accent2); margin-top:6px; padding-top:14px"><span class="name"><b>🎯 Meta diária</b></span><span class="val">1.000 pts</span></div>
+
+    <div class="panel" style="margin-top:24px">
+      <div class="panel-title">Detalhamento por Lançamento</div>
+      <div class="panel-subtitle"><span id="tableInfo">&mdash;</span></div>
+      <div class="table-wrap">
+        <table id="dataTable">
+          <thead><tr>
+            <th>Data</th><th>Colaborador</th><th>Atividade</th>
+            <th class="num-cell">Postes</th><th class="num-cell">CTO</th><th class="num-cell">CEO</th>
+            <th class="num-cell">Desloc.</th><th class="num-cell">Pontuação</th>
+          </tr></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
       </div>
     </div>
   </div>
 
-  <div class="panel" style="margin-top:24px">
-    <div class="panel-title">Detalhamento por Lançamento</div>
-    <div class="panel-subtitle"><span id="tableInfo">—</span></div>
-    <div class="table-wrap">
-      <table id="dataTable">
-        <thead><tr>
-          <th>Data</th><th>Colaborador</th><th>Atividade</th>
-          <th class="num-cell">Postes</th><th class="num-cell">CTO</th><th class="num-cell">CEO</th>
-          <th class="num-cell">Desloc.</th><th class="num-cell">Pontuação</th>
-        </tr></thead>
-        <tbody id="tableBody"></tbody>
-      </table>
+  <!-- ABA 2: PRODUTIVIDADE PMO -->
+  <div id="tab-pmo" class="tab-content">
+    <div class="controls">
+      <div class="control-group">
+        <label>Período analisado:</label>
+        <span style="color:var(--text);font-size:14px;font-weight:600">20/04/2026 a 12/05/2026 &middot; &asymp;17 dias úteis</span>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-mini"><span class="lbl">&#9201;&#65039; Horas Lançadas</span><span class="val">276,8h</span><span class="sub">total da equipe no período</span></div>
+      <div class="kpi-mini"><span class="lbl">&#128203; Protocolos</span><span class="val">164</span><span class="sub">encerrados/tratados</span></div>
+      <div class="kpi-mini bad"><span class="lbl">&#128260; % Retrabalho</span><span class="val">38,5%</span><span class="sub">meta &le; 20% &middot; &#9888;&#65039; acima do limite</span></div>
+      <div class="kpi-mini"><span class="lbl">&#128739;&#65039; KM de Cabo</span><span class="val">72,2 km</span><span class="sub">projetado no período</span></div>
+      <div class="kpi-mini"><span class="lbl">&#128230; Postes / CTOs</span><span class="val">1.159 / 253</span><span class="sub">total produzido</span></div>
+    </div>
+
+    <div class="panel" style="margin-bottom:22px">
+      <div class="panel-title">&#127942; Ranking de Produtividade</div>
+      <div class="panel-subtitle">Score 0&ndash;100 ponderado &middot; VOLUME 25% &bull; EFICIÊNCIA 25% &bull; FOCO 20% &bull; QUALIDADE 30%</div>
+      <div class="podium" id="pmoPodium"></div>
+    </div>
+
+    <div class="chart-grid">
+      <div class="panel">
+        <div class="panel-title">Comparativo por Pilar</div>
+        <div class="panel-subtitle">Radar com os 4 pilares de produtividade</div>
+        <div class="chart-container"><canvas id="pmoRadar"></canvas></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Distribuição de Horas</div>
+        <div class="panel-subtitle">Categorias de atividade (em horas)</div>
+        <div class="chart-container"><canvas id="pmoCatChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:22px">
+      <div class="panel-title">Pontos Fortes &amp; Pontos de Atenção</div>
+      <div class="insight-grid" id="pmoInsights"></div>
+    </div>
+
+    <div class="panel" style="margin-top:22px">
+      <div class="panel-title">&#128208; Catálogo de KPIs (Detalhado)</div>
+      <div class="panel-subtitle">15 indicadores nos 4 pilares &middot; valores apurados no período</div>
+      <div class="table-wrap" style="max-height:520px">
+        <table>
+          <thead><tr>
+            <th>Pilar</th><th>Cód.</th><th>Indicador</th><th>Unidade</th><th>Meta</th>
+            <th class="num-cell">Aluisio</th><th class="num-cell">J. Victor</th><th class="num-cell">Yuri</th>
+          </tr></thead>
+          <tbody id="pmoKpiBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:22px">
+      <div class="panel-title">&#128269; Diagnóstico Executivo</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="insight bad"><div class="ititle">&#9888;&#65039; Retrabalho alto (38,5% do tempo)</div>Equipe gasta 38,5% das horas em retrabalho (ajustes pós-vistoria + ajustes de projeto). Meta saudável: &le; 20%.</div>
+        <div class="insight"><div class="ititle">&#128221; Aderência ao registro</div>João Victor registrou só &asymp;49% da jornada esperada. Verificar se está lançando todas as atividades no formulário.</div>
+        <div class="insight"><div class="ititle">&#9889; Foco x Interrupção</div>Aluisio trocou de atividade em 30,5% dos registros &mdash; sinal de fila reativa de demandas Voalle competindo com projetos.</div>
+        <div class="insight"><div class="ititle">&#129309; Dependência de interação</div>Yuri pediu interação em 39% das atividades (principalmente Laelson/cliente). Avaliar gargalo de aprovação.</div>
+        <div class="insight good"><div class="ititle">&#128640; Maior produtor de horas</div>Yuri lidera horas (138h, &asymp;9,2h/dia), Aluisio (115h, &asymp;7,7h/dia). Ambos com aderência saudável (&ge;95%).</div>
+      </div>
     </div>
   </div>
 
   <footer>
-    KPI Cabistas PMO · Proxxima Telecom · Fonte: produção cabista v3 · Atualizado em <span id="updated"></span>
+    KPIs PMO &middot; Proxxima Telecom &middot; Fontes: produção cabista v3 + Formulário Produtividade PMO &middot; Atualizado em <span id="updated"></span>
   </footer>
 </div>
 
@@ -313,270 +394,272 @@ const DATA = [{"colaborador":"Renato","data":"2025-08-06","mes":"2025-08","ativi
 const MES_NAMES = {"2025-08": "Ago/2025", "2025-09": "Set/2025", "2025-10": "Out/2025", "2025-11": "Nov/2025", "2026-02": "Fev/2026", "2026-03": "Mar/2026", "2026-04": "Abr/2026", "2026-05": "Mai/2026"};
 const META_DIA = 1000;
 
-const fmt = n => (n||0).toLocaleString('pt-BR', {maximumFractionDigits: 0});
-const fmt1 = n => (n||0).toLocaleString('pt-BR', {maximumFractionDigits: 1});
+const fmt = n => (n||0).toLocaleString('pt-BR',{maximumFractionDigits:0});
+const fmt1 = n => (n||0).toLocaleString('pt-BR',{maximumFractionDigits:1});
 
-const colors = {
-  'Renato': '#38bdf8',
-  'Edvan': '#4ade80',
-  'Bernardo Braz': '#f59e0b'
-};
-
+const colors = { 'Renato':'#38bdf8','Edvan':'#4ade80','Bernardo Braz':'#f59e0b' };
 const allMonths = [...new Set(DATA.map(r=>r.mes))].sort();
-let selectedMonths = new Set(allMonths); // por padrão: todos
+let selectedMonths = new Set(allMonths);
 
-// Multi-select de meses
-const msTrigger = document.getElementById('msTrigger');
-const msPanel = document.getElementById('msPanel');
-const msOptions = document.getElementById('msOptions');
-const msLabel = document.getElementById('msLabel');
+const msTrigger=document.getElementById('msTrigger');
+const msPanel=document.getElementById('msPanel');
+const msOptions=document.getElementById('msOptions');
+const msLabel=document.getElementById('msLabel');
 
-function buildMsOptions() {
-  msOptions.innerHTML = allMonths.map(m=>`
-    <label class="ms-option">
-      <input type="checkbox" value="${m}" ${selectedMonths.has(m)?'checked':''}>
-      <span>${MES_NAMES[m] || m}</span>
-    </label>
-  `).join('');
-  msOptions.querySelectorAll('input').forEach(cb=>{
-    cb.addEventListener('change', ()=>{
-      if (cb.checked) selectedMonths.add(cb.value);
-      else selectedMonths.delete(cb.value);
-      updateMsLabel(); refresh();
-    });
-  });
+function buildMsOptions(){
+  msOptions.innerHTML = allMonths.map(m=>`<label class="ms-option"><input type="checkbox" value="${m}" ${selectedMonths.has(m)?'checked':''}><span>${MES_NAMES[m]||m}</span></label>`).join('');
+  msOptions.querySelectorAll('input').forEach(cb=>cb.addEventListener('change',()=>{
+    if(cb.checked)selectedMonths.add(cb.value); else selectedMonths.delete(cb.value);
+    updateMsLabel(); refresh();
+  }));
 }
-function updateMsLabel() {
-  if (selectedMonths.size === 0) msLabel.textContent = 'Nenhum mês selecionado';
-  else if (selectedMonths.size === allMonths.length) msLabel.textContent = 'Todos os meses';
-  else if (selectedMonths.size === 1) msLabel.textContent = MES_NAMES[[...selectedMonths][0]];
-  else msLabel.textContent = `${selectedMonths.size} meses selecionados`;
+function updateMsLabel(){
+  if(selectedMonths.size===0) msLabel.textContent='Nenhum mês selecionado';
+  else if(selectedMonths.size===allMonths.length) msLabel.textContent='Todos os meses';
+  else if(selectedMonths.size===1) msLabel.textContent=MES_NAMES[[...selectedMonths][0]];
+  else msLabel.textContent=`${selectedMonths.size} meses selecionados`;
 }
-msTrigger.addEventListener('click', e=>{
-  msTrigger.classList.toggle('open');
-  msPanel.classList.toggle('open');
-});
-document.addEventListener('click', e=>{
-  if (!msTrigger.contains(e.target) && !msPanel.contains(e.target)) {
-    msTrigger.classList.remove('open');
-    msPanel.classList.remove('open');
+msTrigger.addEventListener('click',()=>{msTrigger.classList.toggle('open');msPanel.classList.toggle('open');});
+document.addEventListener('click',e=>{
+  if(!msTrigger.contains(e.target)&&!msPanel.contains(e.target)){
+    msTrigger.classList.remove('open'); msPanel.classList.remove('open');
   }
 });
-document.getElementById('msAll').addEventListener('click', ()=>{
-  selectedMonths = new Set(allMonths); buildMsOptions(); updateMsLabel(); refresh();
-});
-document.getElementById('msNone').addEventListener('click', ()=>{
-  selectedMonths = new Set(); buildMsOptions(); updateMsLabel(); refresh();
-});
-buildMsOptions();
-updateMsLabel();
+document.getElementById('msAll').addEventListener('click',()=>{selectedMonths=new Set(allMonths);buildMsOptions();updateMsLabel();refresh();});
+document.getElementById('msNone').addEventListener('click',()=>{selectedMonths=new Set();buildMsOptions();updateMsLabel();refresh();});
+buildMsOptions(); updateMsLabel();
 
 let lineChart, doughnutChart, barChart;
 
-function getFiltered() {
-  const col = document.getElementById('filterCol').value;
-  return DATA.filter(r =>
-    selectedMonths.has(r.mes) &&
-    (col==='ALL' || r.colaborador===col)
-  );
+function getFiltered(){
+  const col=document.getElementById('filterCol').value;
+  return DATA.filter(r=>selectedMonths.has(r.mes)&&(col==='ALL'||r.colaborador===col));
 }
 
-function buildMetaBar(score, meta, isTrain) {
-  // Escala da barra: garante que tanto o atingido quanto a meta apareçam
+function buildMetaBar(score, meta, isTrain){
   const scale = Math.max(score, meta) * 1.05 || 1;
-  const metaPos = (meta / scale) * 100;
-  const scorePos = (score / scale) * 100;
+  const metaPos = (meta/scale)*100;
+  const scorePos = (score/scale)*100;
   const delta = score - meta;
-  const pct = meta ? (score / meta) * 100 : 0;
-
+  const pct = meta ? (score/meta)*100 : 0;
   let fillCls, markerCls, chip;
-  if (isTrain) {
-    fillCls = 'training';
-    markerCls = 'train';
-    chip = `<span class="delta-chip train">🎓 em treinamento</span>`;
-  } else if (delta >= 0) {
-    fillCls = 'ok';
-    markerCls = 'up';
-    chip = `<span class="delta-chip up">▲ +${fmt(delta)} pts · ${fmt1(pct)}%</span>`;
-  } else {
-    fillCls = pct >= 70 ? 'warn' : 'bad';
-    markerCls = 'down';
-    chip = `<span class="delta-chip down">▼ ${fmt(delta)} pts · ${fmt1(pct)}%</span>`;
-  }
-
-  const markerLabel = isTrain ? '🎓' : (delta >= 0 ? '✓' : '!');
-
-  const html = `
-    <div class="meta-bar">
-      <div class="track"><div class="fill ${fillCls}" style="width:${scorePos}%"></div></div>
-      <div class="meta-mark" style="left:${metaPos}%"></div>
-      <div class="marker ${markerCls}" style="left:${Math.min(99, Math.max(1, scorePos))}%" title="Atual: ${fmt(score)} pts">${markerLabel}</div>
-    </div>`;
+  if(isTrain){ fillCls='training'; markerCls='train'; chip=`<span class="delta-chip train">\u{1F393} em treinamento</span>`; }
+  else if(delta>=0){ fillCls='ok'; markerCls='up'; chip=`<span class="delta-chip up">\u25B2 +${fmt(delta)} pts \u00B7 ${fmt1(pct)}%</span>`; }
+  else { fillCls = pct>=70?'warn':'bad'; markerCls='down'; chip=`<span class="delta-chip down">\u25BC ${fmt(delta)} pts \u00B7 ${fmt1(pct)}%</span>`; }
+  const lbl = isTrain ? '\u{1F393}' : (delta>=0?'\u2713':'!');
+  const html = `<div class="meta-bar"><div class="track"><div class="fill ${fillCls}" style="width:${scorePos}%"></div></div><div class="meta-mark" style="left:${metaPos}%"></div><div class="marker ${markerCls}" style="left:${Math.min(99,Math.max(1,scorePos))}%" title="Atual: ${fmt(score)} pts">${lbl}</div></div>`;
   return { html, chip };
 }
 
-function renderKPIs(rows) {
+function renderKPIs(rows){
   const grid = document.getElementById('kpiGrid');
   const colabs = ['Renato','Edvan','Bernardo Braz'];
   const cards = [];
 
-  // Card geral (acumulado de todos os colaboradores selecionados)
-  const total = rows.reduce((s,r)=>s+r.producao, 0);
+  const total = rows.reduce((s,r)=>s+r.producao,0);
   const totalDias = rows.length;
-  const totalMeta = totalDias * META_DIA;
-  const totalPct = totalMeta ? (total/totalMeta)*100 : 0;
+  const totalMeta = totalDias*META_DIA;
   const totalAvg = totalDias ? total/totalDias : 0;
-  const totalBar = buildMetaBar(total, totalMeta, false);
-  cards.push(`
-    <div class="kpi-card total">
-      <div class="kpi-header"><div class="kpi-name">Pontuação Geral</div><div class="avatar" style="background:linear-gradient(135deg,#38bdf8,#4ade80,#f59e0b)">Σ</div></div>
-      <div class="kpi-value">${fmt(total)}</div>
-      <div class="kpi-label">acumulado · ${selectedMonths.size} ${selectedMonths.size===1?'mês':'meses'} · ${totalDias} dias trabalhados</div>
-      <div class="meta-bar-wrap">
-        <div class="meta-bar-info">
-          <span>Meta: <b>${fmt(totalMeta)}</b> pts</span>
-          <span>${totalBar.chip}</span>
-        </div>
-        ${totalBar.html}
-      </div>
-      <div class="kpi-stats">
-        <div class="kpi-stat"><div class="num">${fmt(totalAvg)}</div><div class="lbl">média/dia</div></div>
-        <div class="kpi-stat"><div class="num">${totalDias}</div><div class="lbl">dias trab.</div></div>
-        <div class="kpi-stat"><div class="num">${selectedMonths.size}</div><div class="lbl">meses</div></div>
-      </div>
-    </div>`);
+  const tb = buildMetaBar(total, totalMeta, false);
+  cards.push(`<div class="kpi-card total"><div class="kpi-header"><div class="kpi-name">Pontuação Geral</div><div class="avatar" style="background:linear-gradient(135deg,#38bdf8,#4ade80,#f59e0b)">\u03A3</div></div><div class="kpi-value">${fmt(total)}</div><div class="kpi-label">acumulado \u00B7 ${selectedMonths.size} ${selectedMonths.size===1?'mês':'meses'} \u00B7 ${totalDias} dias trabalhados</div><div class="meta-bar-wrap"><div class="meta-bar-info"><span>Meta: <b>${fmt(totalMeta)}</b> pts</span><span>${tb.chip}</span></div>${tb.html}</div><div class="kpi-stats"><div class="kpi-stat"><div class="num">${fmt(totalAvg)}</div><div class="lbl">média/dia</div></div><div class="kpi-stat"><div class="num">${totalDias}</div><div class="lbl">dias trab.</div></div><div class="kpi-stat"><div class="num">${selectedMonths.size}</div><div class="lbl">meses</div></div></div></div>`);
 
   colabs.forEach(name=>{
     const rs = rows.filter(r=>r.colaborador===name);
-    if (rs.length===0) return;
-    const score = rs.reduce((s,r)=>s+r.producao, 0);
+    if(rs.length===0) return;
+    const score = rs.reduce((s,r)=>s+r.producao,0);
     const dias = rs.length;
-    const avg = dias ? score/dias : 0;
-    const meta = dias * META_DIA;
-    const pct = meta ? (score/meta)*100 : 0;
+    const avg = dias?score/dias:0;
+    const meta = dias*META_DIA;
     const cls = name.toLowerCase().split(' ')[0];
     const initial = name.split(' ').map(w=>w[0]).join('').slice(0,2);
-    const isTrain = (name === 'Bernardo Braz');
-    let fillCls = 'ok';
-    if (isTrain) fillCls = 'training';
-    else if (pct < 70) fillCls = 'bad';
-    else if (pct < 90) fillCls = 'warn';
-
-    const trainNote = isTrain ? `
-      <div class="training-note">
-        <span class="ti">🎓</span>
-        <span><b>Em treinamento</b> — Colaborador em fase de capacitação (integração + NR10).
-        A pontuação inicial inclui dias dedicados a treinamento e acompanhamento de campo, por isso a meta não é aplicável neste período.</span>
-      </div>` : '';
-
+    const isTrain = (name==='Bernardo Braz');
     const bar = buildMetaBar(score, meta, isTrain);
-    cards.push(`
-      <div class="kpi-card ${cls}">
-        <div class="kpi-header">
-          <div class="kpi-name">${name}</div>
-          <div class="avatar ${cls}">${initial}</div>
-        </div>
-        <div class="kpi-value">${fmt(score)}</div>
-        <div class="kpi-label">acumulado · ${dias} dias trabalhados · média ${fmt(avg)}/dia</div>
-        <div class="meta-bar-wrap">
-          <div class="meta-bar-info">
-            <span>Meta: <b>${fmt(meta)}</b> pts</span>
-            <span>${bar.chip}</span>
-          </div>
-          ${bar.html}
-        </div>
-        ${trainNote}
-        <div class="kpi-stats">
-          <div class="kpi-stat"><div class="num">${fmt(rs.reduce((s,r)=>s+r.postes,0))}</div><div class="lbl">postes</div></div>
-          <div class="kpi-stat"><div class="num">${fmt(rs.reduce((s,r)=>s+r.cto+r.ceo,0))}</div><div class="lbl">CTO/CEO</div></div>
-          <div class="kpi-stat"><div class="num">${fmt1(rs.reduce((s,r)=>s+r.deslocamento,0))}h</div><div class="lbl">desloc.</div></div>
-        </div>
-      </div>`);
+    const trainNote = isTrain ? `<div class="training-note"><span class="ti">\u{1F393}</span><span><b>Em treinamento</b> &mdash; Colaborador em fase de capacitação (integração + NR10). A pontuação inicial inclui dias dedicados a treinamento e acompanhamento de campo, por isso a meta não é aplicável neste período.</span></div>` : '';
+    cards.push(`<div class="kpi-card ${cls}"><div class="kpi-header"><div class="kpi-name">${name}</div><div class="avatar ${cls}">${initial}</div></div><div class="kpi-value">${fmt(score)}</div><div class="kpi-label">acumulado \u00B7 ${dias} dias trabalhados \u00B7 média ${fmt(avg)}/dia</div><div class="meta-bar-wrap"><div class="meta-bar-info"><span>Meta: <b>${fmt(meta)}</b> pts</span><span>${bar.chip}</span></div>${bar.html}</div>${trainNote}<div class="kpi-stats"><div class="kpi-stat"><div class="num">${fmt(rs.reduce((s,r)=>s+r.postes,0))}</div><div class="lbl">postes</div></div><div class="kpi-stat"><div class="num">${fmt(rs.reduce((s,r)=>s+r.cto+r.ceo,0))}</div><div class="lbl">CTO/CEO</div></div><div class="kpi-stat"><div class="num">${fmt1(rs.reduce((s,r)=>s+r.deslocamento,0))}h</div><div class="lbl">desloc.</div></div></div></div>`);
   });
-
   grid.innerHTML = cards.join('');
 }
 
-function renderLineChart(rows) {
+function renderLineChart(rows){
   const dates = [...new Set(rows.map(r=>r.data))].sort();
   const datasets = ['Renato','Edvan','Bernardo Braz'].map(name=>{
-    const m = {};
-    rows.filter(r=>r.colaborador===name).forEach(r=>{ m[r.data]=(m[r.data]||0)+r.producao; });
-    const data = dates.map(d => m[d] !== undefined ? m[d] : null);
-    if (data.every(v=>v===null)) return null;
-    return {
-      label: name,
-      data: data,
-      borderColor: colors[name],
-      backgroundColor: colors[name]+'22',
-      tension: 0.3,
-      spanGaps: true,
-      pointRadius: 3,
-      fill: false
-    };
+    const m={}; rows.filter(r=>r.colaborador===name).forEach(r=>{m[r.data]=(m[r.data]||0)+r.producao;});
+    const data = dates.map(d=>m[d]!==undefined?m[d]:null);
+    if(data.every(v=>v===null)) return null;
+    return { label:name, data, borderColor:colors[name], backgroundColor:colors[name]+'22', tension:0.3, spanGaps:true, pointRadius:3, fill:false };
   }).filter(Boolean);
-
-  datasets.push({
-    label: 'Meta diária (1.000)',
-    data: dates.map(()=>META_DIA),
-    borderColor: '#f87171',
-    borderDash: [6,4],
-    borderWidth: 1.5,
-    pointRadius: 0,
-    fill: false
-  });
-
-  if (lineChart) lineChart.destroy();
-  lineChart = new Chart(document.getElementById('lineChart'), {
-    type: 'line',
-    data: { labels: dates.map(d=>d.split('-').slice(1).join('/')), datasets },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { labels: { color: '#e5edff', font: { size: 12 } } },
-        tooltip: { callbacks: { label: c => `${c.dataset.label}: ${fmt(c.parsed.y)} pts` } }
-      },
-      scales: {
-        x: { ticks: { color: '#93a3c4', maxRotation: 60, minRotation: 45, autoSkip: true, maxTicksLimit: 18 }, grid: { color: '#233152' } },
-        y: { ticks: { color: '#93a3c4', callback: v=>fmt(v) }, grid: { color: '#233152' }, beginAtZero: true }
-      }
+  datasets.push({ label:'Meta diária (1.000)', data:dates.map(()=>META_DIA), borderColor:'#f87171', borderDash:[6,4], borderWidth:1.5, pointRadius:0, fill:false });
+  if(lineChart) lineChart.destroy();
+  lineChart = new Chart(document.getElementById('lineChart'),{
+    type:'line',
+    data:{ labels:dates.map(d=>d.split('-').slice(1).join('/')), datasets },
+    options:{ responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
+      plugins:{ legend:{labels:{color:'#e5edff'}}, tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmt(c.parsed.y)} pts`}} },
+      scales:{ x:{ticks:{color:'#93a3c4',maxRotation:60,minRotation:45,autoSkip:true,maxTicksLimit:18},grid:{color:'#233152'}}, y:{ticks:{color:'#93a3c4',callback:v=>fmt(v)},grid:{color:'#233152'},beginAtZero:true} }
     }
   });
 }
 
-function renderDoughnut(rows) {
-  const sums = { Postes:0, 'CTO':0, 'CEO':0, Deslocamento:0 };
-  rows.forEach(r=>{
-    sums.Postes += r.postes * 2.5;
-    sums['CTO'] += r.cto * 12.5;
-    sums['CEO'] += r.ceo * 22.2;
-    sums.Deslocamento += r.deslocamento * 111;
-  });
-  if (doughnutChart) doughnutChart.destroy();
-  doughnutChart = new Chart(document.getElementById('doughnutChart'), {
-    type: 'doughnut',
-    data: {
-      labels: Object.keys(sums),
-      datasets: [{
-        data: Object.values(sums),
-        backgroundColor: ['#38bdf8','#4ade80','#f59e0b','#a78bfa'],
-        borderColor: '#131c2f', borderWidth: 2
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'bottom', labels: { color: '#e5edff', padding: 12 } },
-        tooltip: { callbacks: { label: c => {
-          const tot = c.dataset.data.reduce((a,b)=>a+b,0);
-          return `${c.label}: ${fmt(c.parsed)} pts (${tot?((c.parsed/tot)*100).toFixed(1):0}%)`;
-        } } }
-      }
+function renderDoughnut(rows){
+  const sums = {Postes:0,'CTO':0,'CEO':0,Deslocamento:0};
+  rows.forEach(r=>{ sums.Postes+=r.postes*2.5; sums['CTO']+=r.cto*12.5; sums['CEO']+=r.ceo*22.2; sums.Deslocamento+=r.deslocamento*111; });
+  if(doughnutChart) doughnutChart.destroy();
+  doughnutChart = new Chart(document.getElementById('doughnutChart'),{
+    type:'doughnut',
+    data:{ labels:Object.keys(sums), datasets:[{ data:Object.values(sums), backgroundColor:['#38bdf8','#4ade80','#f59e0b','#a78bfa'], borderColor:'#131c2f', borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{position:'bottom',labels:{color:'#e5edff',padding:12}}, tooltip:{callbacks:{label:c=>{ const t=c.dataset.data.reduce((a,b)=>a+b,0); return `${c.label}: ${fmt(c.parsed)} pts (${t?((c.parsed/t)*100).toFixed(1):0}%)`; }}} }
     }
   });
 }
 
-function renderBar(rows) {
-  const colabs = ['Renato','Edvan','Bernardo Braz'];
-  const acc = [], meta
+function renderBar(rows){
+  const colabs=['Renato','Edvan','Bernardo Braz'];
+  const acc=[],metas=[];
+  colabs.forEach(name=>{
+    const rs=rows.filter(r=>r.colaborador===name);
+    acc.push(rs.reduce((s,r)=>s+r.producao,0));
+    metas.push(rs.length*META_DIA);
+  });
+  if(barChart) barChart.destroy();
+  barChart = new Chart(document.getElementById('barChart'),{
+    type:'bar',
+    data:{ labels:colabs, datasets:[
+      { label:'Acumulado', data:acc, backgroundColor:colabs.map(n=>colors[n]+'cc'), borderColor:colabs.map(n=>colors[n]), borderWidth:1.5, borderRadius:6 },
+      { label:'Meta', data:metas, backgroundColor:'rgba(248,113,113,0.15)', borderColor:'#f87171', borderWidth:1.5, borderRadius:6, borderDash:[4,4] }
+    ]},
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{labels:{color:'#e5edff'}}, tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmt(c.parsed.x)} pts`}} },
+      scales:{ x:{ticks:{color:'#93a3c4',callback:v=>fmt(v)},grid:{color:'#233152'},beginAtZero:true}, y:{ticks:{color:'#e5edff'},grid:{display:false}} }
+    }
+  });
+}
+
+function renderTable(rows){
+  const sorted=[...rows].sort((a,b)=>b.data.localeCompare(a.data));
+  document.getElementById('tableBody').innerHTML = sorted.map(r=>{
+    const cls=r.colaborador.toLowerCase().split(' ')[0];
+    return `<tr><td>${r.data.split('-').reverse().join('/')}</td><td><span class="tag ${cls}">${r.colaborador}</span></td><td>${(r.atividade||'').slice(0,90)}${(r.atividade||'').length>90?'\u2026':''}</td><td class="num-cell">${fmt(r.postes)}</td><td class="num-cell">${fmt(r.cto)}</td><td class="num-cell">${fmt(r.ceo)}</td><td class="num-cell">${fmt1(r.deslocamento)}</td><td class="num-cell"><b>${fmt(r.producao)}</b></td></tr>`;
+  }).join('');
+  document.getElementById('tableInfo').textContent = `${sorted.length} lançamentos \u00B7 ${fmt(sorted.reduce((s,r)=>s+r.producao,0))} pts \u00B7 meta acumulada ${fmt(sorted.length*META_DIA)} pts`;
+}
+
+function refresh(){ const rows=getFiltered(); renderKPIs(rows); renderLineChart(rows); renderDoughnut(rows); renderBar(rows); renderTable(rows); }
+document.getElementById('filterCol').addEventListener('change',refresh);
+document.getElementById('updated').textContent = new Date().toLocaleString('pt-BR');
+refresh();
+
+/* ========= TAB SWITCHING ========= */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab==='tab-pmo' && !window._pmoRendered) renderPMO();
+  });
+});
+
+/* ========= PMO TAB ========= */
+const PMO_RANKING = [
+  { pos:1, name:'Yuri Morais de Farias', score:81.4, cls:'Excelente', clsKey:'excel',
+    volume:91.2, eficiencia:87.8, foco:93.7, qualidade:59.6, medal:'\u{1F947}',
+    strong:'Liderança absoluta em VOLUME (100 em horas, registros, protocolos, postes e CTOs). Foco excelente \u2014 apenas 2% de troca de atividade. Aderência ao registro de 115%.',
+    weak:'Retrabalho ainda alto: 32,6% das horas em ajustes pós-vistoria (meta \u226420%). 39% das atividades exigiram interação externa \u2014 sinal de gargalo de aprovação.' },
+  { pos:2, name:'João Victor Britto da Silva', score:69.6, cls:'Bom', clsKey:'bom',
+    volume:18.4, eficiencia:60.9, foco:100, qualidade:99.3, medal:'\u{1F948}',
+    strong:'Melhor pontuação em QUALIDADE (99) e FOCO (100). Apenas 8,5% de retrabalho. Tempo médio por atividade adequado (2,63h). Concentrou 54 km de cabo no cluster 172.',
+    weak:'Volume muito baixo: 23,6h em 6 dias (49% de aderência). Cobertura de só 35% dos dias úteis \u2014 investigar se está em outra alocação. Score baixo de Volume puxa o total.' },
+  { pos:3, name:'Aluisio Felix C. Junior', score:52.8, cls:'Regular', clsKey:'reg',
+    volume:43.2, eficiencia:85.0, foco:79.3, qualidade:16.4, medal:'\u{1F949}',
+    strong:'Excelente em EFICIÊNCIA (85): aderência 95,6%, cobertura 88% dos dias, tempo médio ideal (1,95h). Volume sólido: 289 postes e 77 CTOs.',
+    weak:'Crítico em QUALIDADE (16): 51,8% das horas em retrabalho (limite saudável: 20%). FOCO comprometido \u2014 30,5% de troca de atividade indica fila reativa Voalle interrompendo projetos.' }
+];
+
+const PMO_KPIS = [
+  ['VOLUME','K01','Horas Lançadas','h','\u2265 7,5h \u00D7 dia',114.77,23.63,138.43],
+  ['VOLUME','K02','Registros de Atividade','un','\u2265 3/dia útil',59,9,99],
+  ['VOLUME','K03','Protocolos Encerrados','un','\u2014',0,0,164],
+  ['VOLUME','K04','Postes Projetados/Ajustados','un','\u2014',289,118,752],
+  ['VOLUME','K05','CTOs Adicionadas/Ajustadas','un','\u2014',77,1,175],
+  ['VOLUME','K06','KM de Cabo Projetado','km','\u2014',12,53.97,6.27],
+  ['EFICIÊNCIA','K07','Aderência ao Registro','%','\u2265 90%',95.6,49.2,115.4],
+  ['EFICIÊNCIA','K08','Cobertura de Dias','%','\u2265 95%',88.2,35.3,88.2],
+  ['EFICIÊNCIA','K09','Tempo Médio por Atividade','h','1,5h\u20133,0h',1.95,2.63,1.4],
+  ['EFICIÊNCIA','K10','% Horas em Atividade Core','%','\u2265 70%',43.3,60.4,51.4],
+  ['FOCO','K11','Taxa de Troca de Atividade','%','\u2264 15%',30.5,11.1,2.0],
+  ['FOCO','K12','% Atividades c/ Interação Externa','%','\u2264 30%',16.9,0,39.4],
+  ['FOCO','K13','Horas em Reuniões','h','\u2264 10% horas',4.62,0,8.55],
+  ['QUALIDADE','K14','% Horas em Retrabalho','%','\u2264 20%',51.8,8.5,32.6],
+  ['QUALIDADE','K15','Horas em Retrabalho','h','\u2014',59.47,2,45.12]
+];
+
+const PMO_CATEGORIES = {
+  'Tratativa Protocolos/Demandas':[28.92,0,65.25],
+  'Ajuste Pós-Vistoria (Retrabalho)':[35.8,2,26.42],
+  'Ajuste de Projeto':[23.67,0,18.7],
+  'Desenvolvimento de Projeto/Cluster':[20.77,14.28,5.87],
+  'Reunião/Alinhamento':[4.62,0,8.55],
+  'Planilhas/Apoio':[0,7.35,5.17]
+};
+
+let pmoRadar, pmoCatChart;
+
+function renderPMO(){
+  window._pmoRendered = true;
+  const order = [PMO_RANKING[1], PMO_RANKING[0], PMO_RANKING[2]];
+  const cardCls = ['second','first','third'];
+  document.getElementById('pmoPodium').innerHTML = order.map((p,i)=>{
+    const pillars = [['Volume',p.volume,'#38bdf8'],['Eficiência',p.eficiencia,'#4ade80'],['Foco',p.foco,'#a78bfa'],['Qualidade',p.qualidade,'#f59e0b']];
+    const pillarsHtml = `<div class="pillar-bars" style="margin-top:14px">${pillars.map(([n,v,c])=>`<div class="pillar-row"><span class="pname">${n}</span><div class="ptrack"><div class="pfill" style="width:${v}%;background:${c}"></div></div><span class="pval">${fmt1(v)}</span></div>`).join('')}</div>`;
+    return `<div class="podium-card ${cardCls[i]}"><div class="podium-medal">${p.medal}</div><div class="podium-pos">${p.pos}º LUGAR</div><div class="podium-name">${p.name}</div><div class="podium-score">${fmt1(p.score)} <span style="font-size:14px;color:var(--text-dim);font-weight:600">pts</span></div><span class="podium-cls ${p.clsKey}">${p.cls}</span>${pillarsHtml}</div>`;
+  }).join('');
+
+  if(pmoRadar) pmoRadar.destroy();
+  pmoRadar = new Chart(document.getElementById('pmoRadar'),{
+    type:'radar',
+    data:{ labels:['Volume','Eficiência','Foco','Qualidade'],
+      datasets: PMO_RANKING.map(p=>({
+        label:p.name.split(' ').slice(0,2).join(' '),
+        data:[p.volume,p.eficiencia,p.foco,p.qualidade],
+        borderColor:{1:'#fbbf24',2:'#38bdf8',3:'#f87171'}[p.pos],
+        backgroundColor:{1:'rgba(251,191,36,0.15)',2:'rgba(56,189,248,0.15)',3:'rgba(248,113,113,0.15)'}[p.pos],
+        borderWidth:2, pointRadius:4
+      })) },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{labels:{color:'#e5edff'}}, tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmt1(c.parsed.r)} pts`}} },
+      scales:{ r:{ min:0,max:100,
+        angleLines:{color:'#233152'}, grid:{color:'#233152'},
+        pointLabels:{color:'#e5edff',font:{size:12,weight:'600'}},
+        ticks:{color:'#93a3c4',backdropColor:'transparent',stepSize:25}
+      } } }
+  });
+
+  const cats = Object.keys(PMO_CATEGORIES);
+  const catColors = ['#38bdf8','#f87171','#fbbf24','#4ade80','#a78bfa','#94a3b8'];
+  if(pmoCatChart) pmoCatChart.destroy();
+  pmoCatChart = new Chart(document.getElementById('pmoCatChart'),{
+    type:'bar',
+    data:{ labels:['Aluisio','J. Victor','Yuri'],
+      datasets: cats.map((cat,i)=>({
+        label:cat, data:PMO_CATEGORIES[cat],
+        backgroundColor:catColors[i]+'cc', borderColor:catColors[i], borderWidth:1
+      })) },
+    options:{ responsive:true, maintainAspectRatio:false, indexAxis:'y',
+      plugins:{ legend:{position:'bottom',labels:{color:'#e5edff',boxWidth:10,font:{size:11}}}, tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmt1(c.parsed.x)}h`}} },
+      scales:{ x:{stacked:true,ticks:{color:'#93a3c4',callback:v=>v+'h'},grid:{color:'#233152'}}, y:{stacked:true,ticks:{color:'#e5edff'},grid:{display:false}} }
+    }
+  });
+
+  document.getElementById('pmoInsights').innerHTML = PMO_RANKING.map(p=>`<div class="insight good"><div class="ititle">${p.medal} ${p.name} \u2014 Pontos fortes</div>${p.strong}</div><div class="insight bad"><div class="ititle">${p.medal} ${p.name} \u2014 Atenção</div>${p.weak}</div>`).join('');
+
+  const pilarColors = {'VOLUME':'#38bdf8','EFICIÊNCIA':'#4ade80','FOCO':'#a78bfa','QUALIDADE':'#f59e0b'};
+  document.getElementById('pmoKpiBody').innerHTML = PMO_KPIS.map(k=>{
+    const [pilar,cod,ind,un,meta,a,j,y] = k;
+    const f = v => typeof v!=='number' ? v : (un==='%'?fmt1(v)+'%':(un==='h'||un==='km')?fmt1(v):fmt(v));
+    return `<tr><td><span class="tag" style="background:${pilarColors[pilar]}22;color:${pilarColors[pilar]}">${pilar}</span></td><td style="color:var(--text-dim);font-weight:700">${cod}</td><td>${ind}</td><td style="color:var(--text-dim)">${un}</td><td style="color:var(--text-dim);font-size:12px">${meta}</td><td class="num-cell">${f(a)}</td><td class="num-cell">${f(j)}</td><td class="num-cell">${f(y)}</td></tr>`;
+  }).join('');
+}
+</script>
+</body>
+</html>
