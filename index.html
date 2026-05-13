@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPI Cabistas PMO | Proxxima Telecom</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0b1220;
+  --card: #131c2f;
+  --card2: #1a253d;
+  --border: #233152;
+  --text: #e5edff;
+  --text-dim: #93a3c4;
+  --accent: #4ade80;
+  --accent2: #38bdf8;
+  --accent3: #f59e0b;
+  --danger: #f87171;
+  --renato: #38bdf8;
+  --edvan: #4ade80;
+  --bernardo: #f59e0b;
+  --meta: #f87171;
+}
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #0b1220 0%, #131c2f 100%);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 24px;
+}
+.container { max-width: 1400px; margin: 0 auto; }
+header {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 24px; padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.logo {
+  width: 52px; height: 52px; border-radius: 12px;
+  background: linear-gradient(135deg, #38bdf8, #4ade80);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; font-weight: 800; color: #0b1220;
+}
+h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+.subtitle { color: var(--text-dim); font-size: 14px; }
+.controls {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  margin-top: 16px;
+}
+.control-group { display: flex; align-items: center; gap: 8px; position: relative; }
+label { font-size: 13px; color: var(--text-dim); font-weight: 500; }
+select, .ms-trigger {
+  background: var(--card2); color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px 12px; font-size: 14px; font-family: inherit;
+  cursor: pointer; outline: none; min-width: 200px;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+select:focus, .ms-trigger:focus, .ms-trigger.open { border-color: var(--accent2); }
+.ms-trigger .arrow { font-size: 10px; color: var(--text-dim); transition: transform .2s; }
+.ms-trigger.open .arrow { transform: rotate(180deg); }
+.ms-panel {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0; min-width: 240px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px; display: none; z-index: 50; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  max-height: 320px; overflow: auto;
+}
+.ms-panel.open { display: block; }
+.ms-toolbar { display: flex; gap: 6px; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.ms-toolbar button {
+  flex: 1; background: var(--card2); color: var(--text-dim); border: 1px solid var(--border);
+  padding: 4px 8px; font-size: 11px; border-radius: 5px; cursor: pointer; font-weight: 600;
+}
+.ms-toolbar button:hover { color: var(--accent2); border-color: var(--accent2); }
+.ms-option {
+  display: flex; align-items: center; gap: 8px; padding: 7px 8px;
+  border-radius: 6px; cursor: pointer; font-size: 13px;
+}
+.ms-option:hover { background: var(--card2); }
+.ms-option input { accent-color: var(--accent2); cursor: pointer; }
+
+.kpi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; margin-bottom: 24px;
+}
+.kpi-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px;
+  position: relative; overflow: hidden;
+}
+.kpi-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--accent2);
+}
+.kpi-card.renato::before { background: var(--renato); }
+.kpi-card.edvan::before { background: var(--edvan); }
+.kpi-card.bernardo::before { background: var(--bernardo); }
+.kpi-card.total::before { background: linear-gradient(90deg, var(--renato), var(--edvan), var(--bernardo)); }
+
+.kpi-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+}
+.kpi-name { font-size: 14px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: #0b1220; font-size: 14px;
+}
+.avatar.renato { background: var(--renato); }
+.avatar.edvan { background: var(--edvan); }
+.avatar.bernardo { background: var(--bernardo); }
+
+.kpi-value { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
+.kpi-label { font-size: 13px; color: var(--text-dim); }
+
+.meta-bar-wrap { margin-top: 14px; }
+.meta-bar-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-dim); margin-bottom: 6px; }
+.meta-bar-info b { color: var(--text); }
+.meta-bar { height: 14px; background: var(--card2); border-radius: 999px; position: relative; margin-top: 18px; }
+.meta-bar .track { position: absolute; inset: 0; border-radius: 999px; overflow: hidden; }
+.meta-bar .fill { height: 100%; border-radius: 999px; transition: width .6s ease; }
+.meta-bar .fill.ok { background: linear-gradient(90deg, #4ade80, #22c55e); }
+.meta-bar .fill.warn { background: linear-gradient(90deg, #f59e0b, #f97316); }
+.meta-bar .fill.bad { background: linear-gradient(90deg, #f87171, #ef4444); }
+.meta-bar .fill.training { background: linear-gradient(90deg, #f59e0b, #facc15); }
+.meta-bar .meta-mark {
+  position: absolute; top: -5px; bottom: -5px; width: 3px;
+  background: #fff; border-radius: 2px; box-shadow: 0 0 0 2px rgba(15,23,42,0.7);
+  z-index: 2;
+}
+.meta-bar .meta-mark::before {
+  content: 'META'; position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+  font-size: 9px; font-weight: 700; color: #fff; background: rgba(15,23,42,0.85);
+  padding: 1px 5px; border-radius: 3px; letter-spacing: 0.06em; white-space: nowrap;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.meta-bar .marker {
+  position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; color: #0b1220;
+  border: 2px solid #0b1220; z-index: 3;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+.meta-bar .marker.up { background: #4ade80; }
+.meta-bar .marker.down { background: #f87171; color: #fff; }
+.meta-bar .marker.train { background: #fbbf24; }
+.delta-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 9px; border-radius: 999px;
+  font-size: 12px; font-weight: 700;
+  margin-left: 4px;
+}
+.delta-chip.up { background: rgba(74,222,128,0.18); color: #4ade80; border: 1px solid rgba(74,222,128,0.4); }
+.delta-chip.down { background: rgba(248,113,113,0.18); color: #f87171; border: 1px solid rgba(248,113,113,0.4); }
+.delta-chip.train { background: rgba(245,158,11,0.18); color: #fbbf24; border: 1px solid rgba(245,158,11,0.4); }
+.training-note {
+  display: flex; gap: 8px; align-items: flex-start;
+  background: rgba(245,158,11,0.10); border: 1px solid rgba(245,158,11,0.3);
+  padding: 8px 10px; border-radius: 8px; margin-top: 10px;
+  font-size: 12px; color: #fde68a; line-height: 1.4;
+}
+.training-note .ti { font-size: 14px; }
+.training-note b { color: var(--accent3); }
+
+.kpi-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);
+}
+.kpi-stat { text-align: center; }
+.kpi-stat .num { font-size: 16px; font-weight: 700; color: var(--text); }
+.kpi-stat .lbl { font-size: 11px; color: var(--text-dim); text-transform: uppercase; }
+
+.chart-grid {
+  display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px;
+}
+@media (max-width: 900px) { .chart-grid { grid-template-columns: 1fr; } }
+
+.panel {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px;
+}
+.panel-title { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+.panel-subtitle { font-size: 12px; color: var(--text-dim); margin-bottom: 14px; }
+
+.chart-container { position: relative; height: 320px; }
+
+.metric-list { display: flex; flex-direction: column; gap: 12px; }
+.metric-item { display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 12px; background: var(--card2); border-radius: 8px; }
+.metric-item .name { font-size: 13px; }
+.metric-item .val { font-size: 14px; font-weight: 700; color: var(--accent2); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th {
+  text-align: left; padding: 10px 12px;
+  background: var(--card2); color: var(--text-dim);
+  font-weight: 600; text-transform: uppercase; font-size: 11px;
+  letter-spacing: 0.05em;
+  position: sticky; top: 0;
+}
+tbody td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+tbody tr:hover { background: rgba(56,189,248,0.05); }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag.renato { background: rgba(56,189,248,0.15); color: var(--renato); }
+.tag.edvan { background: rgba(74,222,128,0.15); color: var(--edvan); }
+.tag.bernardo { background: rgba(245,158,11,0.15); color: var(--bernardo); }
+.table-wrap { max-height: 480px; overflow: auto; border-radius: 10px; border: 1px solid var(--border); }
+.num-cell { text-align: right; font-variant-numeric: tabular-nums; }
+
+footer { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border);
+  color: var(--text-dim); font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="logo">KP</div>
+      <div>
+        <h1>KPI Cabistas PMO</h1>
+        <div class="subtitle">Proxxima Telecom · Dashboard de Pontuação dos Colaboradores</div>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="control-group">
+        <label for="msTrigger">Filtrar por mês:</label>
+        <div>
+          <div id="msTrigger" class="ms-trigger" tabindex="0">
+            <span id="msLabel">Todos os meses</span>
+            <span class="arrow">▼</span>
+          </div>
+          <div id="msPanel" class="ms-panel">
+            <div class="ms-toolbar">
+              <button type="button" id="msAll">Todos</button>
+              <button type="button" id="msNone">Limpar</button>
+            </div>
+            <div id="msOptions"></div>
+          </div>
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="filterCol">Colaborador:</label>
+        <select id="filterCol">
+          <option value="ALL">Todos</option>
+          <option value="Renato">Renato</option>
+          <option value="Edvan">Edvan</option>
+          <option value="Bernardo Braz">Bernardo Braz</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <div class="kpi-grid" id="kpiGrid"></div>
+
+  <div class="chart-grid">
+    <div class="panel">
+      <div class="panel-title">Pontuação ao longo do tempo</div>
+      <div class="panel-subtitle">Produção diária por colaborador (Meta diária = 1.000 pts)</div>
+      <div class="chart-container"><canvas id="lineChart"></canvas></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Distribuição por atividade</div>
+      <div class="panel-subtitle">Composição da pontuação (Postes, CTO, CEO, Deslocamento)</div>
+      <div class="chart-container"><canvas id="doughnutChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="chart-grid" style="grid-template-columns: 1fr 1fr;">
+    <div class="panel">
+      <div class="panel-title">Acumulado vs Meta do Período</div>
+      <div class="panel-subtitle">Meta = 1.000 pts × dias trabalhados no período filtrado</div>
+      <div class="chart-container" style="height:280px"><canvas id="barChart"></canvas></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Sistema de Pontuação (Métricas)</div>
+      <div class="panel-subtitle">Pesos aplicados a cada atividade</div>
+      <div class="metric-list">
+        <div class="metric-item"><span class="name">🏗️ Postes vistoriados</span><span class="val">2,5 pts/un.</span></div>
+        <div class="metric-item"><span class="name">📦 CTO instalado</span><span class="val">12,5 pts/un.</span></div>
+        <div class="metric-item"><span class="name">📡 CEO instalado</span><span class="val">22,2 pts/un.</span></div>
+        <div class="metric-item"><span class="name">🚗 Deslocamento (hora)</span><span class="val">111 pts/h</span></div>
+        <div class="metric-item" style="border-top:2px solid var(--accent2); margin-top:6px; padding-top:14px"><span class="name"><b>🎯 Meta diária</b></span><span class="val">1.000 pts</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:24px">
+    <div class="panel-title">Detalhamento por Lançamento</div>
+    <div class="panel-subtitle"><span id="tableInfo">—</span></div>
+    <div class="table-wrap">
+      <table id="dataTable">
+        <thead><tr>
+          <th>Data</th><th>Colaborador</th><th>Atividade</th>
+          <th class="num-cell">Postes</th><th class="num-cell">CTO</th><th class="num-cell">CEO</th>
+          <th class="num-cell">Desloc.</th><th class="num-cell">Pontuação</th>
+        </tr></thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    KPI Cabistas PMO · Proxxima Telecom · Fonte: produção cabista v3 · Atualizado em <span id="updated"></span>
+  </footer>
+</div>
+
+<script>
+const DATA = [{"colaborador":"Renato","data":"2025-08-06","mes":"2025-08","atividade":"Serviço em Campina + deslocamento Goianinha","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":6.0,"producao":666.0},{"colaborador":"Renato","data":"2025-08-07","mes":"2025-08","atividade":"Vistoria CTOs + deslocamento","postes":0.0,"cto":73.0,"ceo":0,"deslocamento":0.0,"producao":912.5},{"colaborador":"Renato","data":"2025-08-08","mes":"2025-08","atividade":"Deslocamento Campina + acompanhar pessoal em Campina","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":6.15,"producao":682.65},{"colaborador":"Renato","data":"2025-08-11","mes":"2025-08","atividade":"Deslocamento + vistoria bananeiras","postes":0.0,"cto":60.0,"ceo":0,"deslocamento":2.0,"producao":972.0},{"colaborador":"Renato","data":"2025-08-12","mes":"2025-08","atividade":"vistoria bananeiras","postes":0.0,"cto":58.0,"ceo":0,"deslocamento":0.0,"producao":725.0},{"colaborador":"Renato","data":"2025-08-13","mes":"2025-08","atividade":"vistoria bananeiras","postes":0.0,"cto":60.0,"ceo":0,"deslocamento":0.0,"producao":750.0},{"colaborador":"Renato","data":"2025-08-14","mes":"2025-08","atividade":"vistoria bananeiras","postes":0.0,"cto":60.0,"ceo":0,"deslocamento":0.0,"producao":750.0},{"colaborador":"Renato","data":"2025-08-15","mes":"2025-08","atividade":"Vistoria bananeiras + deslocamento","postes":0.0,"cto":60.0,"ceo":0,"deslocamento":2.0,"producao":972.0},{"colaborador":"Renato","data":"2025-08-18","mes":"2025-08","atividade":"Deslocamento para alto do rodrigues","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":5.0,"producao":555.0},{"colaborador":"Renato","data":"2025-08-19","mes":"2025-08","atividade":"Deslocamento + vistoria ipanguaçu","postes":0.0,"cto":81.0,"ceo":0,"deslocamento":1.0,"producao":1123.5},{"colaborador":"Renato","data":"2025-08-20","mes":"2025-08","atividade":"Deslocamento + vistoria serra do mel","postes":0.0,"cto":91.0,"ceo":0,"deslocamento":1.0,"producao":1248.5},{"colaborador":"Renato","data":"2025-08-21","mes":"2025-08","atividade":"Deslocamento + vistoria serra do mel","postes":0.0,"cto":82.0,"ceo":0,"deslocamento":2.0,"producao":1247.0},{"colaborador":"Renato","data":"2025-08-22","mes":"2025-08","atividade":"Deslocamento Campina","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":5.0,"producao":555.0},{"colaborador":"Renato","data":"2025-08-25","mes":"2025-08","atividade":"Deslocamento guarabira + vistoria Belém","postes":0.0,"cto":50.0,"ceo":0,"deslocamento":3.0,"producao":958.0},{"colaborador":"Renato","data":"2025-08-26","mes":"2025-08","atividade":"Deslocamento + Vistoria Belém","postes":0.0,"cto":50.0,"ceo":0,"deslocamento":1.0,"producao":736.0},{"colaborador":"Renato","data":"2025-08-27","mes":"2025-08","atividade":"Deslocamento + Vistoria Belém","postes":0.0,"cto":56.0,"ceo":0,"deslocamento":1.0,"producao":811.0},{"colaborador":"Renato","data":"2025-08-28","mes":"2025-08","atividade":"Deslocamento + vistoria Itapororoca","postes":0.0,"cto":62.0,"ceo":0,"deslocamento":2.0,"producao":997.0},{"colaborador":"Renato","data":"2025-08-29","mes":"2025-08","atividade":"Deslocamento para Campina, o mesmo foi deixar o filho no médico","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":2.0,"producao":222.0},{"colaborador":"Renato","data":"2025-09-01","mes":"2025-09","atividade":"Deslocamento + vistoria itapororoca","postes":0.0,"cto":46.0,"ceo":0,"deslocamento":3.8,"producao":996.8},{"colaborador":"Renato","data":"2025-09-02","mes":"2025-09","atividade":"Deslocamento + vistoria itapororoca","postes":0.0,"cto":40.0,"ceo":0,"deslocamento":2.1,"producao":733.1},{"colaborador":"Renato","data":"2025-09-03","mes":"2025-09","atividade":"Deslocamento + vistoria itapororoca","postes":0.0,"cto":40.0,"ceo":0,"deslocamento":2.04,"producao":726.44},{"colaborador":"Renato","data":"2025-09-04","mes":"2025-09","atividade":"Deslocamento + vistoria Mari","postes":0.0,"cto":48.0,"ceo":0,"deslocamento":2.0,"producao":822.0},{"colaborador":"Renato","data":"2025-09-05","mes":"2025-09","atividade":"Deslocamento + vistoria mari","postes":0.0,"cto":26.0,"ceo":0,"deslocamento":2.0,"producao":547.0},{"colaborador":"Renato","data":"2025-09-08","mes":"2025-09","atividade":"Iniciou o deslocamento e teve que retornar devido a problema no veiculo","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":7.0,"producao":777.0},{"colaborador":"Renato","data":"2025-09-09","mes":"2025-09","atividade":"Veiculo voltou a apresentar problemas","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":6.67,"producao":740.37},{"colaborador":"Renato","data":"2025-09-10","mes":"2025-09","atividade":"Veiculo ficou na oficina","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":6.0,"producao":666.0},{"colaborador":"Renato","data":"2025-09-11","mes":"2025-09","atividade":"Veiculo saiu da oficina e voltou a apresentar problema","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":6.0,"producao":666.0},{"colaborador":"Renato","data":"2025-09-12","mes":"2025-09","atividade":"Veiculo ficou na oficina","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":6.0,"producao":666.0},{"colaborador":"Renato","data":"2025-09-15","mes":"2025-09","atividade":"Vistoria em Sapé projeto novo","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-16","mes":"2025-09","atividade":"Vistoria em Sapé projeto novo","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-17","mes":"2025-09","atividade":"Vistoria em Sapé projeto novo","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-18","mes":"2025-09","atividade":"Vistoria em Sapé de projeto novo e viajem para Campina Grande","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-19","mes":"2025-09","atividade":"Vistoria em Sapé de projeto novo e viajem para Campina Grande","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-22","mes":"2025-09","atividade":"Vistoria em Sapé de projeto novo e viajem para Campina Grande","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-23","mes":"2025-09","atividade":"Vistoria em Sapé de projeto novo e viajem para Campina Grande","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-24","mes":"2025-09","atividade":"","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-25","mes":"2025-09","atividade":"","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-26","mes":"2025-09","atividade":"","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-29","mes":"2025-09","atividade":"Auditoria de rede FTTH","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-09-30","mes":"2025-09","atividade":"","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-10-01","mes":"2025-10","atividade":"","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-10-02","mes":"2025-10","atividade":"","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-10-03","mes":"2025-10","atividade":"","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Renato","data":"2025-10-06","mes":"2025-10","atividade":"Aguardou veiculo sair da revisão + deslocamento Açu","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Renato","data":"2025-10-07","mes":"2025-10","atividade":"Deslocamento + vistoria Afonso Bezerra","postes":0.0,"cto":55.0,"ceo":0,"deslocamento":3.0,"producao":1020.5},{"colaborador":"Renato","data":"2025-10-08","mes":"2025-10","atividade":"Deslocamento + vistoria Afonso Bezerra","postes":0.0,"cto":50.0,"ceo":0,"deslocamento":3.31,"producao":992.41},{"colaborador":"Renato","data":"2025-10-09","mes":"2025-10","atividade":"Deslocamento + porto do mangue","postes":0.0,"cto":44.0,"ceo":0,"deslocamento":3.31,"producao":917.41},{"colaborador":"Renato","data":"2025-10-10","mes":"2025-10","atividade":"Deslocamento Para campina","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":8.0,"producao":888.0},{"colaborador":"Renato","data":"2025-10-13","mes":"2025-10","atividade":"Vistoria de postes dentro de propriedades","postes":1.0,"cto":0.0,"ceo":0,"deslocamento":9.0,"producao":1001.5},{"colaborador":"Renato","data":"2025-10-14","mes":"2025-10","atividade":"Vistoria de postes dentro de propriedades","postes":4.0,"cto":0.0,"ceo":0,"deslocamento":8.5,"producao":953.5},{"colaborador":"Renato","data":"2025-10-15","mes":"2025-10","atividade":"Vistoria de postes dentro de propriedades","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":8.0,"producao":888.0},{"colaborador":"Renato","data":"2025-10-16","mes":"2025-10","atividade":"Vistoria de postes dentro de propriedades","postes":32.0,"cto":0.0,"ceo":0,"deslocamento":8.0,"producao":968.0},{"colaborador":"Renato","data":"2025-10-17","mes":"2025-10","atividade":"Vistoria de postes dentro de propriedades","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":7.0,"producao":777.0},{"colaborador":"Renato","data":"2025-10-20","mes":"2025-10","atividade":"Vistoria de postes dentro de propriedades","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Renato","data":"2025-10-21","mes":"2025-10","atividade":"Vistoria de postes dentro de propriedades","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Renato","data":"2025-10-22","mes":"2025-10","atividade":"Vistoria de postes dentro de propriedades","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Renato","data":"2025-10-23","mes":"2025-10","atividade":"Vistoria de postes dentro de propriedades","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Renato","data":"2025-10-24","mes":"2025-10","atividade":"Vistoria de postes dentro de propriedades","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":7.63,"producao":846.93},{"colaborador":"Renato","data":"2025-10-27","mes":"2025-10","atividade":"Coleta de postes Backbones","postes":180.0,"cto":0.0,"ceo":0,"deslocamento":4.0,"producao":894.0},{"colaborador":"Renato","data":"2025-10-28","mes":"2025-10","atividade":"Coleta de postes Backbones","postes":416.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":1040.0},{"colaborador":"Renato","data":"2025-10-29","mes":"2025-10","atividade":"Coleta de postes Backbones","postes":436.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":1090.0},{"colaborador":"Renato","data":"2025-10-30","mes":"2025-10","atividade":"Coleta de postes Backbones","postes":392.0,"cto":0.0,"ceo":0,"deslocamento":0.0,"producao":980.0},{"colaborador":"Renato","data":"2025-10-31","mes":"2025-10","atividade":"Coleta de postes Backbones","postes":110.0,"cto":0.0,"ceo":0,"deslocamento":4.0,"producao":719.0},{"colaborador":"Renato","data":"2025-11-03","mes":"2025-11","atividade":"Coleta de postes Backbones","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Renato","data":"2025-11-04","mes":"2025-11","atividade":"Coleta de postes Backbones","postes":366.0,"cto":0.0,"ceo":0,"deslocamento":3.0,"producao":1248.0},{"colaborador":"Renato","data":"2025-11-05","mes":"2025-11","atividade":"Coleta de postes Backbones","postes":208.0,"cto":0.0,"ceo":0,"deslocamento":3.0,"producao":853.0},{"colaborador":"Renato","data":"2025-11-06","mes":"2025-11","atividade":"Coleta de postes Backbones","postes":368.0,"cto":0.0,"ceo":0,"deslocamento":3.0,"producao":1253.0},{"colaborador":"Renato","data":"2025-11-07","mes":"2025-11","atividade":"Coleta de postes Backbones","postes":0.0,"cto":0.0,"ceo":0,"deslocamento":8.0,"producao":888.0},{"colaborador":"Edvan","data":"2026-02-09","mes":"2026-02","atividade":"Auxiliou a equipe de documentação e aguardou veiculo chegar","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Edvan","data":"2026-02-10","mes":"2026-02","atividade":"Aguardou o veiculo sair da oficina, viagem para barauna e coleta dos postes","postes":69.0,"cto":0.0,"ceo":0.0,"deslocamento":6.745,"producao":921.195},{"colaborador":"Edvan","data":"2026-02-11","mes":"2026-02","atividade":"Auxilio a equipe de documentação","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Edvan","data":"2026-02-12","mes":"2026-02","atividade":"Auxilio a equipe de documentação","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Edvan","data":"2026-02-13","mes":"2026-02","atividade":"Auxilio a equipe de documentação","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":8.0,"producao":888.0},{"colaborador":"Edvan","data":"2026-02-16","mes":"2026-02","atividade":"Auxilio a equipe de documentação","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Edvan","data":"2026-02-17","mes":"2026-02","atividade":"Auxilio a equipe de documentação","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Edvan","data":"2026-02-18","mes":"2026-02","atividade":"Auxilio a equipe de documentação","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Edvan","data":"2026-02-19","mes":"2026-02","atividade":"Auxilio a equipe de documentação","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Edvan","data":"2026-02-20","mes":"2026-02","atividade":"Auxilio a equipe de documentação","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":8.0,"producao":888.0},{"colaborador":"Edvan","data":"2026-02-23","mes":"2026-02","atividade":"Viagem Guamare","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":6.49,"producao":720.39},{"colaborador":"Edvan","data":"2026-02-24","mes":"2026-02","atividade":"Coleta dos postes de Guamaré e Macau","postes":482.0,"cto":0.0,"ceo":0.0,"deslocamento":2.0,"producao":1427.0},{"colaborador":"Edvan","data":"2026-02-25","mes":"2026-02","atividade":"Viagem para caico e coleta dos postes de Caico","postes":200.0,"cto":0.0,"ceo":0.0,"deslocamento":5.384,"producao":1097.624},{"colaborador":"Edvan","data":"2026-02-26","mes":"2026-02","atividade":"Tentativa de coleta dos postes dentro de proriedade, sem acesso","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Edvan","data":"2026-02-27","mes":"2026-02","atividade":"Tentativa de coleta dos postes dentro de proriedade e volta pra Campina","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":8.0,"producao":888.0},{"colaborador":"Edvan","data":"2026-03-02","mes":"2026-03","atividade":"Viagem para Lajedo + inicio da vistoria do rio da barra","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":444.0},{"colaborador":"Edvan","data":"2026-03-03","mes":"2026-03","atividade":"Tentativa de coleta dos postes dentro de proriedade, sem acesso (Rio da Barra)","postes":9.0,"cto":0.0,"ceo":0.0,"deslocamento":5.0,"producao":577.5},{"colaborador":"Edvan","data":"2026-03-04","mes":"2026-03","atividade":"Tentativa de coleta dos postes dentro de proriedade (Zabele)","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Edvan","data":"2026-03-05","mes":"2026-03","atividade":"Tentativa de coleta dos postes dentro de proriedade (Zabele)","postes":79.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":1196.5},{"colaborador":"Edvan","data":"2026-03-06","mes":"2026-03","atividade":"Volta pra Campina e verificação de 8 postes em monteiro (não teve mais atividade no dia)","postes":0.0,"cto":10.0,"ceo":0.0,"deslocamento":4.0,"producao":569.0},{"colaborador":"Edvan","data":"2026-03-09","mes":"2026-03","atividade":"Deslocamento e imprevisto no carro","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Edvan","data":"2026-03-10","mes":"2026-03","atividade":"Coleta de CEO e reserva TOOLSNET","postes":0.0,"cto":0.0,"ceo":50.0,"deslocamento":0.0,"producao":1110.0},{"colaborador":"Edvan","data":"2026-03-11","mes":"2026-03","atividade":"Coleta de CEO e reserva TOOLSNET","postes":0.0,"cto":0.0,"ceo":44.0,"deslocamento":0.0,"producao":976.8},{"colaborador":"Edvan","data":"2026-03-12","mes":"2026-03","atividade":"Coleta de CEO e reserva TOOLSNET","postes":0.0,"cto":0.0,"ceo":31.0,"deslocamento":0.0,"producao":688.2},{"colaborador":"Edvan","data":"2026-03-13","mes":"2026-03","atividade":"Já finalizado a demanda , viajem de volta","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":8.0,"producao":888.0},{"colaborador":"Edvan","data":"2026-03-17","mes":"2026-03","atividade":"Projetado - Cluster 118, 125, 383 e 384 - São Vicente do Seridó - PB","postes":79.0,"cto":17.0,"ceo":0.0,"deslocamento":2.02,"producao":634.22},{"colaborador":"Edvan","data":"2026-03-18","mes":"2026-03","atividade":"Projetado - Clusters 13, 119, 329 e 394 - Cubati - PB ","postes":307.0,"cto":33.0,"ceo":0.0,"deslocamento":0.0,"producao":1180.0},{"colaborador":"Edvan","data":"2026-03-19","mes":"2026-03","atividade":"Projetado - Cluster 387 - Juazeirinho - PB","postes":0.0,"cto":2.0,"ceo":0.0,"deslocamento":0.0,"producao":25.0},{"colaborador":"Edvan","data":"2026-03-19","mes":"2026-03","atividade":"Projetado - Cluster 320 - São Vicente do Seridó - PB","postes":28.0,"cto":3.0,"ceo":0.0,"deslocamento":0.0,"producao":107.5},{"colaborador":"Edvan","data":"2026-03-20","mes":"2026-03","atividade":"Projetado - Clusters 273","postes":323.0,"cto":14.0,"ceo":0.0,"deslocamento":0.0,"producao":982.5},{"colaborador":"Edvan","data":"2026-03-20","mes":"2026-03","atividade":"Expansão Cluster 25 e 38 - Tenório - PB","postes":29.0,"cto":16.0,"ceo":0.0,"deslocamento":0.0,"producao":272.5},{"colaborador":"Edvan","data":"2026-03-20","mes":"2026-03","atividade":"Projetado - Clusters 69, 97, 171, 324 e 328 - Cubati","postes":226.0,"cto":26.0,"ceo":0.0,"deslocamento":2.0,"producao":1112.0},{"colaborador":"Edvan","data":"2026-03-23","mes":"2026-03","atividade":"Viajem Cajazeiras, Cluster 254 - Bernardino Batista ","postes":51.0,"cto":20.0,"ceo":0.0,"deslocamento":5.41,"producao":978.01},{"colaborador":"Edvan","data":"2026-03-23","mes":"2026-03","atividade":"Projetado - Cluster 173 - Triunfo - PB ","postes":151.0,"cto":36.0,"ceo":0.0,"deslocamento":2.1,"producao":1060.6},{"colaborador":"Edvan","data":"2026-03-24","mes":"2026-03","atividade":"Projetado - Cluster 253 - São João do Rio do Peixe - PB, Projetado - Cluster 201 - São João do Rio do Peixe, Projetado - Cluster 253 - São João do Rio do Peixe - PB","postes":215.0,"cto":14.0,"ceo":0.0,"deslocamento":1.34,"producao":861.24},{"colaborador":"Edvan","data":"2026-03-25","mes":"2026-03","atividade":"Expansão Cluster 326 e 276 - Sossego - PB","postes":292.0,"cto":6.0,"ceo":0.0,"deslocamento":1.4,"producao":960.4},{"colaborador":"Edvan","data":"2026-03-26","mes":"2026-03","atividade":"Expansão Cluster 275 - Sossego - PB, Projetado - Cluster 198 - São Vicente do Seridó - PB - ","postes":87.0,"cto":3.0,"ceo":0.0,"deslocamento":5.0,"producao":810.0},{"colaborador":"Edvan","data":"2026-03-27","mes":"2026-03","atividade":"Viajem para campina grande","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":2.0,"producao":222.0},{"colaborador":"Edvan","data":"2026-03-30","mes":"2026-03","atividade":"Projetado - Cluster 250 - Picuí - PB , Projetado - Clusters 327 - Picuí - PB v1.0","postes":4.0,"cto":4.0,"ceo":0.0,"deslocamento":4.0,"producao":504.0},{"colaborador":"Edvan","data":"2026-03-31","mes":"2026-03","atividade":"Projetado - Cluster 95 e 137 - Picuí - PB v1.0","postes":141.0,"cto":18.0,"ceo":0.0,"deslocamento":4.0,"producao":1021.5},{"colaborador":"Edvan","data":"2026-04-01","mes":"2026-04","atividade":"Expansão Cluster 32 - Tenório - PB _05_02_2026_v1.0 , Projetado - Cluster 85, 280, 391 - Pedra Lavada - PB , Expansão Cluster 251 e 126 - Nova Palmeira - PB","postes":227.0,"cto":35.0,"ceo":0.0,"deslocamento":1.0,"producao":1116.0},{"colaborador":"Edvan","data":"2026-04-02","mes":"2026-04","atividade":"Expansão Cluster 221 - Baraúna - PB, Cluster 396 - São Vicente do Seridó - PB","postes":42.0,"cto":7.0,"ceo":0.0,"deslocamento":2.0,"producao":414.5},{"colaborador":"Edvan","data":"2026-04-03","mes":"2026-04","atividade":"Feriado ","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Edvan","data":"2026-04-06","mes":"2026-04","atividade":"Projetado - Cluster 198 - São Vicente do Seridó - PB v2.0","postes":198.0,"cto":3.0,"ceo":0.0,"deslocamento":2.45,"producao":804.45},{"colaborador":"Edvan","data":"2026-04-07","mes":"2026-04","atividade":"Projetado - Cluster 274 - Boa Vista - PB","postes":84.0,"cto":3.0,"ceo":0.0,"deslocamento":3.0,"producao":580.5},{"colaborador":"Edvan","data":"2026-04-08","mes":"2026-04","atividade":"Expansão Cluster 221 - Baraúna - PB, Cluster 396 - São Vicente do Seridó - PB","postes":180.0,"cto":5.0,"ceo":0.0,"deslocamento":4.0,"producao":956.5},{"colaborador":"Edvan","data":"2026-04-09","mes":"2026-04","atividade":"KMZ - Torre Sítio Gaspar - São José da Mata - PB - 22.04.2024 - v1","postes":188.0,"cto":6.0,"ceo":0.0,"deslocamento":2.0,"producao":767.0},{"colaborador":"Edvan","data":"2026-04-10","mes":"2026-04","atividade":"Expansão Cluster 34 e 280 - Sossêgo - PB","postes":168.0,"cto":3.0,"ceo":0.0,"deslocamento":4.0,"producao":901.5},{"colaborador":"Edvan","data":"2026-04-13","mes":"2026-04","atividade":"Viajem até Cubati X Sossego , vontando de Sossego X Campina","postes":226.0,"cto":0.0,"ceo":0.0,"deslocamento":3.72,"producao":977.92},{"colaborador":"Edvan","data":"2026-04-14","mes":"2026-04","atividade":"Viajem até São João do Rio do Peixe","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":6.5,"producao":721.5},{"colaborador":"Edvan","data":"2026-04-15","mes":"2026-04","atividade":"Viajem de São João do Rio do Peixe Até Triunfo , Trinfo X Bernadino Batista, Bernadino batista X São João do Rio do Peixe","postes":360.0,"cto":0.0,"ceo":0.0,"deslocamento":2.5,"producao":1177.5},{"colaborador":"Edvan","data":"2026-04-16","mes":"2026-04","atividade":"Viajem de São João do Rio do Peixe X Campina","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":6.5,"producao":721.5},{"colaborador":"Edvan","data":"2026-04-17","mes":"2026-04","atividade":"Viajem até galante/Fagundes, trenar coleta de Postes com Bernardo /  Sossego X Baraúnas volta de viagem (pontuação de bernado aqui)","postes":211.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":971.5},{"colaborador":"Edvan","data":"2026-04-20","mes":"2026-04","atividade":"Viajem Campina grande X Sossego X Baraúnas volta de viagem ,  Baraúnas X Campina grande","postes":104.0,"cto":2.0,"ceo":0.0,"deslocamento":5.0,"producao":840.0},{"colaborador":"Edvan","data":"2026-04-21","mes":"2026-04","atividade":"Feriado ","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Edvan","data":"2026-04-22","mes":"2026-04","atividade":"Campina grande X Nova Palmeira, 2 ,horas X Nova Palmeira X Picuí  25 minutos, Picuí X Frei Martinho 25 minutos , volta de Frei Martinho X Picuí 25 minutos","postes":440.0,"cto":0.0,"ceo":0.0,"deslocamento":1.3,"producao":1244.3},{"colaborador":"Edvan","data":"2026-04-23","mes":"2026-04","atividade":"Viagem de ida e volta de Picuí X Sossego","postes":560.0,"cto":0.0,"ceo":0.0,"deslocamento":5.4,"producao":1999.4},{"colaborador":"Edvan","data":"2026-04-24","mes":"2026-04","atividade":"Viajem de Picuí X Cubati 60 min. Cubati X Pedra Lavrada 30 min. Pedra Lavrada X Campina 1 hora e 40 minutos","postes":435.0,"cto":0.0,"ceo":0.0,"deslocamento":5.61,"producao":1710.21},{"colaborador":"Edvan","data":"2026-04-27","mes":"2026-04","atividade":"Viajem de Campina X Picuí","postes":360.0,"cto":0.0,"ceo":0.0,"deslocamento":1.3,"producao":1044.3},{"colaborador":"Edvan","data":"2026-04-28","mes":"2026-04","atividade":"Vistoria de projetos ajustados em picui","postes":276.0,"cto":0.0,"ceo":0.0,"deslocamento":1.3,"producao":834.3},{"colaborador":"Edvan","data":"2026-04-29","mes":"2026-04","atividade":"Viajem de volta Picuí X Campina","postes":189.0,"cto":0.0,"ceo":0.0,"deslocamento":1.3,"producao":616.8},{"colaborador":"Edvan","data":"2026-04-30","mes":"2026-04","atividade":"Lavagem do veículo pela manhã , Vistoria em projeto de picui","postes":211.0,"cto":0.0,"ceo":0.0,"deslocamento":2.0,"producao":749.5},{"colaborador":"Edvan","data":"2026-05-01","mes":"2026-05","atividade":"Feriado","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":8.0,"producao":888.0},{"colaborador":"Edvan","data":"2026-05-04","mes":"2026-05","atividade":"Passamos na sede na parte da manhã para alinhamento com Brendo, 11:30 viajamos para Lajedo PE","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":444.0},{"colaborador":"Edvan","data":"2026-05-05","mes":"2026-05","atividade":"Locomoção até os pontos de auditoria, Jucati, Lajedo","postes":390.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":1419.0},{"colaborador":"Edvan","data":"2026-05-06","mes":"2026-05","atividade":"Viajem de Lajedo X Campina","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":444.0},{"colaborador":"Edvan","data":"2026-05-07","mes":"2026-05","atividade":"Viajem de Campina X Sossego ,  Sossêgo X São Vicente do Seridó e volta de São Vicente do Seridó X Campina","postes":288.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":1164.0},{"colaborador":"Edvan","data":"2026-05-08","mes":"2026-05","atividade":"Viajem de Campina X Picuí , Picuí X Santa Luzia do Seridó , viajem de volta Até Campina","postes":103.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":701.5},{"colaborador":"Bernardo Braz","data":"2026-04-06","mes":"2026-04","atividade":"Auxilio a equipe de documentação (Mayke)","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Bernardo Braz","data":"2026-04-07","mes":"2026-04","atividade":"Auxilio a equipe de documentação (Mayke)","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Bernardo Braz","data":"2026-04-08","mes":"2026-04","atividade":"Auxilio a equipe de documentação (Mayke)","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Bernardo Braz","data":"2026-04-09","mes":"2026-04","atividade":"Auxilio a equipe de documentação (Mayke)","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Bernardo Braz","data":"2026-04-10","mes":"2026-04","atividade":"Auxilio a equipe de documentação (Mayke)","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":8.0,"producao":888.0},{"colaborador":"Bernardo Braz","data":"2026-04-13","mes":"2026-04","atividade":"integração / Treinamento NR10 35","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Bernardo Braz","data":"2026-04-14","mes":"2026-04","atividade":"Treinamento NR10 36","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Bernardo Braz","data":"2026-04-15","mes":"2026-04","atividade":"Treinamento NR10 37","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Bernardo Braz","data":"2026-04-16","mes":"2026-04","atividade":"Treinamento NR10 38","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":9.0,"producao":999.0},{"colaborador":"Bernardo Braz","data":"2026-04-17","mes":"2026-04","atividade":"Viajem até galante/Fagundes, trenar coleta de Postes com Bernardo /  Sossego X Baraúnas volta de viagem (pontuação de bernado aqui)","postes":211.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":971.5},{"colaborador":"Bernardo Braz","data":"2026-04-20","mes":"2026-04","atividade":"Viajem Campina grande X Sossego X Baraúnas volta de viagem ,  Baraúnas X Campina grande","postes":104.0,"cto":2.0,"ceo":0.0,"deslocamento":5.0,"producao":840.0},{"colaborador":"Bernardo Braz","data":"2026-04-21","mes":"2026-04","atividade":"Feriado ","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":0.0,"producao":0.0},{"colaborador":"Bernardo Braz","data":"2026-04-22","mes":"2026-04","atividade":"Campina grande X Nova Palmeira, 2 ,horas X Nova Palmeira X Picuí  25 minutos, Picuí X Frei Martinho 25 minutos , volta de Frei Martinho X Picuí 25 minutos","postes":440.0,"cto":0.0,"ceo":0.0,"deslocamento":1.3,"producao":1244.3},{"colaborador":"Bernardo Braz","data":"2026-04-23","mes":"2026-04","atividade":"Viagem de ida e volta de Picuí X Sossego","postes":560.0,"cto":0.0,"ceo":0.0,"deslocamento":5.4,"producao":1999.4},{"colaborador":"Bernardo Braz","data":"2026-04-24","mes":"2026-04","atividade":"Viajem de Picuí X Cubati 60 min. Cubati X Pedra Lavrada 30 min. Pedra Lavrada X Campina 1 hora e 40 minutos","postes":435.0,"cto":0.0,"ceo":0.0,"deslocamento":5.61,"producao":1710.21},{"colaborador":"Bernardo Braz","data":"2026-04-27","mes":"2026-04","atividade":"Viajem de Campina X Picuí","postes":360.0,"cto":0.0,"ceo":0.0,"deslocamento":1.3,"producao":1044.3},{"colaborador":"Bernardo Braz","data":"2026-04-28","mes":"2026-04","atividade":"Vistoria de projetos ajustados em picui","postes":276.0,"cto":0.0,"ceo":0.0,"deslocamento":1.3,"producao":834.3},{"colaborador":"Bernardo Braz","data":"2026-04-29","mes":"2026-04","atividade":"Viajem de volta Picuí X Campina","postes":189.0,"cto":0.0,"ceo":0.0,"deslocamento":1.3,"producao":616.8},{"colaborador":"Bernardo Braz","data":"2026-04-30","mes":"2026-04","atividade":"Lavagem do veículo pela manhã , Vistoria em projeto de picui","postes":211.0,"cto":0.0,"ceo":0.0,"deslocamento":2.0,"producao":749.5},{"colaborador":"Bernardo Braz","data":"2026-05-01","mes":"2026-05","atividade":"Feriado","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":8.0,"producao":888.0},{"colaborador":"Bernardo Braz","data":"2026-05-04","mes":"2026-05","atividade":"Passamos na sede na parte da manhã para alinhamento com Brendo, 11:30 viajamos para Lajedo PE","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":444.0},{"colaborador":"Bernardo Braz","data":"2026-05-05","mes":"2026-05","atividade":"Locomoção até os pontos de auditoria, Jucati, Lajedo","postes":390.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":1419.0},{"colaborador":"Bernardo Braz","data":"2026-05-06","mes":"2026-05","atividade":"Viajem de Lajedo X Campina","postes":0.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":444.0},{"colaborador":"Bernardo Braz","data":"2026-05-07","mes":"2026-05","atividade":"Viajem de Campina X Sossego ,  Sossêgo X São Vicente do Seridó e volta de São Vicente do Seridó X Campina","postes":288.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":1164.0},{"colaborador":"Bernardo Braz","data":"2026-05-08","mes":"2026-05","atividade":"Viajem de Campina X Picuí , Picuí X Santa Luzia do Seridó , viajem de volta Até Campina","postes":103.0,"cto":0.0,"ceo":0.0,"deslocamento":4.0,"producao":701.5}];
+const MES_NAMES = {"2025-08": "Ago/2025", "2025-09": "Set/2025", "2025-10": "Out/2025", "2025-11": "Nov/2025", "2026-02": "Fev/2026", "2026-03": "Mar/2026", "2026-04": "Abr/2026", "2026-05": "Mai/2026"};
+const META_DIA = 1000;
+
+const fmt = n => (n||0).toLocaleString('pt-BR', {maximumFractionDigits: 0});
+const fmt1 = n => (n||0).toLocaleString('pt-BR', {maximumFractionDigits: 1});
+
+const colors = {
+  'Renato': '#38bdf8',
+  'Edvan': '#4ade80',
+  'Bernardo Braz': '#f59e0b'
+};
+
+const allMonths = [...new Set(DATA.map(r=>r.mes))].sort();
+let selectedMonths = new Set(allMonths); // por padrão: todos
+
+// Multi-select de meses
+const msTrigger = document.getElementById('msTrigger');
+const msPanel = document.getElementById('msPanel');
+const msOptions = document.getElementById('msOptions');
+const msLabel = document.getElementById('msLabel');
+
+function buildMsOptions() {
+  msOptions.innerHTML = allMonths.map(m=>`
+    <label class="ms-option">
+      <input type="checkbox" value="${m}" ${selectedMonths.has(m)?'checked':''}>
+      <span>${MES_NAMES[m] || m}</span>
+    </label>
+  `).join('');
+  msOptions.querySelectorAll('input').forEach(cb=>{
+    cb.addEventListener('change', ()=>{
+      if (cb.checked) selectedMonths.add(cb.value);
+      else selectedMonths.delete(cb.value);
+      updateMsLabel(); refresh();
+    });
+  });
+}
+function updateMsLabel() {
+  if (selectedMonths.size === 0) msLabel.textContent = 'Nenhum mês selecionado';
+  else if (selectedMonths.size === allMonths.length) msLabel.textContent = 'Todos os meses';
+  else if (selectedMonths.size === 1) msLabel.textContent = MES_NAMES[[...selectedMonths][0]];
+  else msLabel.textContent = `${selectedMonths.size} meses selecionados`;
+}
+msTrigger.addEventListener('click', e=>{
+  msTrigger.classList.toggle('open');
+  msPanel.classList.toggle('open');
+});
+document.addEventListener('click', e=>{
+  if (!msTrigger.contains(e.target) && !msPanel.contains(e.target)) {
+    msTrigger.classList.remove('open');
+    msPanel.classList.remove('open');
+  }
+});
+document.getElementById('msAll').addEventListener('click', ()=>{
+  selectedMonths = new Set(allMonths); buildMsOptions(); updateMsLabel(); refresh();
+});
+document.getElementById('msNone').addEventListener('click', ()=>{
+  selectedMonths = new Set(); buildMsOptions(); updateMsLabel(); refresh();
+});
+buildMsOptions();
+updateMsLabel();
+
+let lineChart, doughnutChart, barChart;
+
+function getFiltered() {
+  const col = document.getElementById('filterCol').value;
+  return DATA.filter(r =>
+    selectedMonths.has(r.mes) &&
+    (col==='ALL' || r.colaborador===col)
+  );
+}
+
+function buildMetaBar(score, meta, isTrain) {
+  // Escala da barra: garante que tanto o atingido quanto a meta apareçam
+  const scale = Math.max(score, meta) * 1.05 || 1;
+  const metaPos = (meta / scale) * 100;
+  const scorePos = (score / scale) * 100;
+  const delta = score - meta;
+  const pct = meta ? (score / meta) * 100 : 0;
+
+  let fillCls, markerCls, chip;
+  if (isTrain) {
+    fillCls = 'training';
+    markerCls = 'train';
+    chip = `<span class="delta-chip train">🎓 em treinamento</span>`;
+  } else if (delta >= 0) {
+    fillCls = 'ok';
+    markerCls = 'up';
+    chip = `<span class="delta-chip up">▲ +${fmt(delta)} pts · ${fmt1(pct)}%</span>`;
+  } else {
+    fillCls = pct >= 70 ? 'warn' : 'bad';
+    markerCls = 'down';
+    chip = `<span class="delta-chip down">▼ ${fmt(delta)} pts · ${fmt1(pct)}%</span>`;
+  }
+
+  const markerLabel = isTrain ? '🎓' : (delta >= 0 ? '✓' : '!');
+
+  const html = `
+    <div class="meta-bar">
+      <div class="track"><div class="fill ${fillCls}" style="width:${scorePos}%"></div></div>
+      <div class="meta-mark" style="left:${metaPos}%"></div>
+      <div class="marker ${markerCls}" style="left:${Math.min(99, Math.max(1, scorePos))}%" title="Atual: ${fmt(score)} pts">${markerLabel}</div>
+    </div>`;
+  return { html, chip };
+}
+
+function renderKPIs(rows) {
+  const grid = document.getElementById('kpiGrid');
+  const colabs = ['Renato','Edvan','Bernardo Braz'];
+  const cards = [];
+
+  // Card geral (acumulado de todos os colaboradores selecionados)
+  const total = rows.reduce((s,r)=>s+r.producao, 0);
+  const totalDias = rows.length;
+  const totalMeta = totalDias * META_DIA;
+  const totalPct = totalMeta ? (total/totalMeta)*100 : 0;
+  const totalAvg = totalDias ? total/totalDias : 0;
+  const totalBar = buildMetaBar(total, totalMeta, false);
+  cards.push(`
+    <div class="kpi-card total">
+      <div class="kpi-header"><div class="kpi-name">Pontuação Geral</div><div class="avatar" style="background:linear-gradient(135deg,#38bdf8,#4ade80,#f59e0b)">Σ</div></div>
+      <div class="kpi-value">${fmt(total)}</div>
+      <div class="kpi-label">acumulado · ${selectedMonths.size} ${selectedMonths.size===1?'mês':'meses'} · ${totalDias} dias trabalhados</div>
+      <div class="meta-bar-wrap">
+        <div class="meta-bar-info">
+          <span>Meta: <b>${fmt(totalMeta)}</b> pts</span>
+          <span>${totalBar.chip}</span>
+        </div>
+        ${totalBar.html}
+      </div>
+      <div class="kpi-stats">
+        <div class="kpi-stat"><div class="num">${fmt(totalAvg)}</div><div class="lbl">média/dia</div></div>
+        <div class="kpi-stat"><div class="num">${totalDias}</div><div class="lbl">dias trab.</div></div>
+        <div class="kpi-stat"><div class="num">${selectedMonths.size}</div><div class="lbl">meses</div></div>
+      </div>
+    </div>`);
+
+  colabs.forEach(name=>{
+    const rs = rows.filter(r=>r.colaborador===name);
+    if (rs.length===0) return;
+    const score = rs.reduce((s,r)=>s+r.producao, 0);
+    const dias = rs.length;
+    const avg = dias ? score/dias : 0;
+    const meta = dias * META_DIA;
+    const pct = meta ? (score/meta)*100 : 0;
+    const cls = name.toLowerCase().split(' ')[0];
+    const initial = name.split(' ').map(w=>w[0]).join('').slice(0,2);
+    const isTrain = (name === 'Bernardo Braz');
+    let fillCls = 'ok';
+    if (isTrain) fillCls = 'training';
+    else if (pct < 70) fillCls = 'bad';
+    else if (pct < 90) fillCls = 'warn';
+
+    const trainNote = isTrain ? `
+      <div class="training-note">
+        <span class="ti">🎓</span>
+        <span><b>Em treinamento</b> — Colaborador em fase de capacitação (integração + NR10).
+        A pontuação inicial inclui dias dedicados a treinamento e acompanhamento de campo, por isso a meta não é aplicável neste período.</span>
+      </div>` : '';
+
+    const bar = buildMetaBar(score, meta, isTrain);
+    cards.push(`
+      <div class="kpi-card ${cls}">
+        <div class="kpi-header">
+          <div class="kpi-name">${name}</div>
+          <div class="avatar ${cls}">${initial}</div>
+        </div>
+        <div class="kpi-value">${fmt(score)}</div>
+        <div class="kpi-label">acumulado · ${dias} dias trabalhados · média ${fmt(avg)}/dia</div>
+        <div class="meta-bar-wrap">
+          <div class="meta-bar-info">
+            <span>Meta: <b>${fmt(meta)}</b> pts</span>
+            <span>${bar.chip}</span>
+          </div>
+          ${bar.html}
+        </div>
+        ${trainNote}
+        <div class="kpi-stats">
+          <div class="kpi-stat"><div class="num">${fmt(rs.reduce((s,r)=>s+r.postes,0))}</div><div class="lbl">postes</div></div>
+          <div class="kpi-stat"><div class="num">${fmt(rs.reduce((s,r)=>s+r.cto+r.ceo,0))}</div><div class="lbl">CTO/CEO</div></div>
+          <div class="kpi-stat"><div class="num">${fmt1(rs.reduce((s,r)=>s+r.deslocamento,0))}h</div><div class="lbl">desloc.</div></div>
+        </div>
+      </div>`);
+  });
+
+  grid.innerHTML = cards.join('');
+}
+
+function renderLineChart(rows) {
+  const dates = [...new Set(rows.map(r=>r.data))].sort();
+  const datasets = ['Renato','Edvan','Bernardo Braz'].map(name=>{
+    const m = {};
+    rows.filter(r=>r.colaborador===name).forEach(r=>{ m[r.data]=(m[r.data]||0)+r.producao; });
+    const data = dates.map(d => m[d] !== undefined ? m[d] : null);
+    if (data.every(v=>v===null)) return null;
+    return {
+      label: name,
+      data: data,
+      borderColor: colors[name],
+      backgroundColor: colors[name]+'22',
+      tension: 0.3,
+      spanGaps: true,
+      pointRadius: 3,
+      fill: false
+    };
+  }).filter(Boolean);
+
+  datasets.push({
+    label: 'Meta diária (1.000)',
+    data: dates.map(()=>META_DIA),
+    borderColor: '#f87171',
+    borderDash: [6,4],
+    borderWidth: 1.5,
+    pointRadius: 0,
+    fill: false
+  });
+
+  if (lineChart) lineChart.destroy();
+  lineChart = new Chart(document.getElementById('lineChart'), {
+    type: 'line',
+    data: { labels: dates.map(d=>d.split('-').slice(1).join('/')), datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { labels: { color: '#e5edff', font: { size: 12 } } },
+        tooltip: { callbacks: { label: c => `${c.dataset.label}: ${fmt(c.parsed.y)} pts` } }
+      },
+      scales: {
+        x: { ticks: { color: '#93a3c4', maxRotation: 60, minRotation: 45, autoSkip: true, maxTicksLimit: 18 }, grid: { color: '#233152' } },
+        y: { ticks: { color: '#93a3c4', callback: v=>fmt(v) }, grid: { color: '#233152' }, beginAtZero: true }
+      }
+    }
+  });
+}
+
+function renderDoughnut(rows) {
+  const sums = { Postes:0, 'CTO':0, 'CEO':0, Deslocamento:0 };
+  rows.forEach(r=>{
+    sums.Postes += r.postes * 2.5;
+    sums['CTO'] += r.cto * 12.5;
+    sums['CEO'] += r.ceo * 22.2;
+    sums.Deslocamento += r.deslocamento * 111;
+  });
+  if (doughnutChart) doughnutChart.destroy();
+  doughnutChart = new Chart(document.getElementById('doughnutChart'), {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(sums),
+      datasets: [{
+        data: Object.values(sums),
+        backgroundColor: ['#38bdf8','#4ade80','#f59e0b','#a78bfa'],
+        borderColor: '#131c2f', borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { color: '#e5edff', padding: 12 } },
+        tooltip: { callbacks: { label: c => {
+          const tot = c.dataset.data.reduce((a,b)=>a+b,0);
+          return `${c.label}: ${fmt(c.parsed)} pts (${tot?((c.parsed/tot)*100).toFixed(1):0}%)`;
+        } } }
+      }
+    }
+  });
+}
+
+function renderBar(rows) {
+  const colabs = ['Renato','Edvan','Bernardo Braz'];
+  const acc = [], meta
