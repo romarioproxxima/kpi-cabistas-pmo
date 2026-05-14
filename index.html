@@ -26,7 +26,6 @@ header { display:flex; flex-direction:column; gap:8px; margin-bottom:24px;
   font-size:26px; font-weight:800; color:#0b1220; }
 h1 { font-size:28px; font-weight:700; letter-spacing:-0.02em; }
 .subtitle { color:var(--text-dim); font-size:14px; }
-
 .tabs { display:flex; gap:4px; margin-bottom:24px; border-bottom:1px solid var(--border); }
 .tab-btn { background:transparent; color:var(--text-dim); border:none;
   padding:12px 20px; font-size:14px; font-weight:600; cursor:pointer;
@@ -36,7 +35,6 @@ h1 { font-size:28px; font-weight:700; letter-spacing:-0.02em; }
 .tab-btn.active { color:var(--text); border-bottom-color:var(--accent2); }
 .tab-content { display:none; }
 .tab-content.active { display:block; }
-
 .controls { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:20px; }
 .control-group { display:flex; align-items:center; gap:8px; position:relative; }
 label { font-size:13px; color:var(--text-dim); font-weight:500; }
@@ -63,7 +61,6 @@ select:focus, .ms-trigger:focus, .ms-trigger.open { border-color:var(--accent2);
   border-radius:6px; cursor:pointer; font-size:13px; }
 .ms-option:hover { background:var(--card2); }
 .ms-option input { accent-color:var(--accent2); cursor:pointer; }
-
 .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:16px; margin-bottom:24px; }
 .kpi-card { background:var(--card); border:1px solid var(--border);
@@ -85,7 +82,6 @@ select:focus, .ms-trigger:focus, .ms-trigger.open { border-color:var(--accent2);
 .avatar.bernardo { background:var(--bernardo); }
 .kpi-value { font-size:32px; font-weight:800; letter-spacing:-0.02em; margin-bottom:6px; }
 .kpi-label { font-size:13px; color:var(--text-dim); }
-
 .meta-bar-wrap { margin-top:14px; }
 .meta-bar-info { display:flex; justify-content:space-between; font-size:12px;
   color:var(--text-dim); margin-bottom:6px; }
@@ -112,7 +108,6 @@ select:focus, .ms-trigger:focus, .ms-trigger.open { border-color:var(--accent2);
 .meta-bar .marker.up { background:#4ade80; }
 .meta-bar .marker.down { background:#f87171; color:#fff; }
 .meta-bar .marker.train { background:#fbbf24; }
-
 .delta-chip { display:inline-flex; align-items:center; gap:5px;
   padding:3px 9px; border-radius:999px; font-size:12px; font-weight:700; margin-left:4px; }
 .delta-chip.up { background:rgba(74,222,128,0.18); color:#4ade80;
@@ -121,35 +116,29 @@ select:focus, .ms-trigger:focus, .ms-trigger.open { border-color:var(--accent2);
   border:1px solid rgba(248,113,113,0.4); }
 .delta-chip.train { background:rgba(245,158,11,0.18); color:#fbbf24;
   border:1px solid rgba(245,158,11,0.4); }
-
 .training-note { display:flex; gap:8px; align-items:flex-start;
   background:rgba(245,158,11,0.10); border:1px solid rgba(245,158,11,0.3);
   padding:8px 10px; border-radius:8px; margin-top:10px;
   font-size:12px; color:#fde68a; line-height:1.4; }
 .training-note .ti { font-size:14px; }
 .training-note b { color:var(--accent3); }
-
 .kpi-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
   margin-top:14px; padding-top:14px; border-top:1px solid var(--border); }
 .kpi-stat { text-align:center; }
 .kpi-stat .num { font-size:16px; font-weight:700; color:var(--text); }
 .kpi-stat .lbl { font-size:11px; color:var(--text-dim); text-transform:uppercase; }
-
 .chart-grid { display:grid; grid-template-columns:2fr 1fr; gap:16px; margin-bottom:24px; }
 @media (max-width:900px) { .chart-grid { grid-template-columns:1fr; } }
-
 .panel { background:var(--card); border:1px solid var(--border);
   border-radius:14px; padding:20px; }
 .panel-title { font-size:16px; font-weight:700; margin-bottom:14px; }
 .panel-subtitle { font-size:12px; color:var(--text-dim); margin-bottom:14px; }
 .chart-container { position:relative; height:320px; }
-
 .metric-list { display:flex; flex-direction:column; gap:12px; }
 .metric-item { display:flex; justify-content:space-between; align-items:center;
   padding:10px 12px; background:var(--card2); border-radius:8px; }
 .metric-item .name { font-size:13px; }
 .metric-item .val { font-size:14px; font-weight:700; color:var(--accent2); }
-
 table { width:100%; border-collapse:collapse; font-size:13px; }
 thead th { text-align:left; padding:10px 12px; background:var(--card2);
   color:var(--text-dim); font-weight:600; text-transform:uppercase; font-size:11px;
@@ -163,11 +152,8 @@ tbody tr:hover { background:rgba(56,189,248,0.05); }
 .tag.bernardo { background:rgba(245,158,11,0.15); color:var(--bernardo); }
 .table-wrap { max-height:480px; overflow:auto; border-radius:10px; border:1px solid var(--border); }
 .num-cell { text-align:right; font-variant-numeric:tabular-nums; }
-
 footer { margin-top:24px; padding-top:18px; border-top:1px solid var(--border);
   color:var(--text-dim); font-size:12px; text-align:center; }
-
-/* PMO Tab */
 .podium { display:grid; grid-template-columns:1fr 1.2fr 1fr; gap:16px;
   align-items:end; margin-bottom:24px; }
 @media (max-width:800px) { .podium { grid-template-columns:1fr; } }
@@ -190,7 +176,6 @@ footer { margin-top:24px; padding-top:18px; border-top:1px solid var(--border);
   border:1px solid rgba(56,189,248,0.4); }
 .podium-cls.reg { background:rgba(245,158,11,0.18); color:#fbbf24;
   border:1px solid rgba(245,158,11,0.4); }
-
 .kpi-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:14px; margin-bottom:22px; }
 .kpi-mini { background:var(--card); border:1px solid var(--border);
@@ -200,7 +185,6 @@ footer { margin-top:24px; padding-top:18px; border-top:1px solid var(--border);
 .kpi-mini .val { font-size:26px; font-weight:800; letter-spacing:-0.02em; }
 .kpi-mini .sub { font-size:11px; color:var(--text-dim); }
 .kpi-mini.bad .val { color:#f87171; }
-
 .pillar-bars { display:flex; flex-direction:column; gap:10px; }
 .pillar-row { display:grid; grid-template-columns:90px 1fr 50px;
   gap:10px; align-items:center; font-size:13px; }
@@ -208,7 +192,6 @@ footer { margin-top:24px; padding-top:18px; border-top:1px solid var(--border);
 .pillar-row .ptrack { height:8px; background:var(--card2); border-radius:999px; overflow:hidden; }
 .pillar-row .pfill { height:100%; border-radius:999px; transition:width .6s; }
 .pillar-row .pval { text-align:right; font-weight:700; font-variant-numeric:tabular-nums; }
-
 .insight-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 @media (max-width:800px) { .insight-grid { grid-template-columns:1fr; } }
 .insight { background:var(--card2); border-left:3px solid var(--accent2);
@@ -321,22 +304,32 @@ footer { margin-top:24px; padding-top:18px; border-top:1px solid var(--border);
   <div id="tab-pmo" class="tab-content">
     <div class="controls">
       <div class="control-group">
-        <label>Período analisado:</label>
-        <span style="color:var(--text);font-size:14px;font-weight:600">20/04/2026 a 12/05/2026 &middot; &asymp;17 dias úteis</span>
+        <label for="pmoMsTrigger">Filtrar por mês:</label>
+        <div>
+          <div id="pmoMsTrigger" class="ms-trigger" tabindex="0">
+            <span id="pmoMsLabel">Todos os meses</span>
+            <span class="arrow">&#9660;</span>
+          </div>
+          <div id="pmoMsPanel" class="ms-panel">
+            <div class="ms-toolbar">
+              <button type="button" id="pmoMsAll">Todos</button>
+              <button type="button" id="pmoMsLast3">Últimos 3</button>
+              <button type="button" id="pmoMsNone">Limpar</button>
+            </div>
+            <div id="pmoMsOptions"></div>
+          </div>
+        </div>
+      </div>
+      <div class="control-group">
+        <span id="pmoPeriodInfo" style="color:var(--text-dim);font-size:13px"></span>
       </div>
     </div>
 
-    <div class="kpi-row">
-      <div class="kpi-mini"><span class="lbl">&#9201;&#65039; Horas Lançadas</span><span class="val">276,8h</span><span class="sub">total da equipe no período</span></div>
-      <div class="kpi-mini"><span class="lbl">&#128203; Protocolos</span><span class="val">164</span><span class="sub">encerrados/tratados</span></div>
-      <div class="kpi-mini bad"><span class="lbl">&#128260; % Retrabalho</span><span class="val">38,5%</span><span class="sub">meta &le; 20% &middot; &#9888;&#65039; acima do limite</span></div>
-      <div class="kpi-mini"><span class="lbl">&#128739;&#65039; KM de Cabo</span><span class="val">72,2 km</span><span class="sub">projetado no período</span></div>
-      <div class="kpi-mini"><span class="lbl">&#128230; Postes / CTOs</span><span class="val">1.159 / 253</span><span class="sub">total produzido</span></div>
-    </div>
+    <div class="kpi-row" id="pmoKpiRow"></div>
 
     <div class="panel" style="margin-bottom:22px">
       <div class="panel-title">&#127942; Ranking de Produtividade</div>
-      <div class="panel-subtitle">Score 0&ndash;100 ponderado &middot; VOLUME 25% &bull; EFICIÊNCIA 25% &bull; FOCO 20% &bull; QUALIDADE 30%</div>
+      <div class="panel-subtitle">Score 0&ndash;100 ponderado &middot; VOLUME 25% &bull; EFICIÊNCIA 25% &bull; FOCO 20% &bull; QUALIDADE 30% &middot; calculado dinamicamente sobre os meses filtrados</div>
       <div class="podium" id="pmoPodium"></div>
     </div>
 
@@ -360,7 +353,7 @@ footer { margin-top:24px; padding-top:18px; border-top:1px solid var(--border);
 
     <div class="panel" style="margin-top:22px">
       <div class="panel-title">&#128208; Catálogo de KPIs (Detalhado)</div>
-      <div class="panel-subtitle">15 indicadores nos 4 pilares &middot; valores apurados no período</div>
+      <div class="panel-subtitle">15 indicadores nos 4 pilares &middot; valores apurados no período filtrado</div>
       <div class="table-wrap" style="max-height:520px">
         <table>
           <thead><tr>
@@ -374,13 +367,7 @@ footer { margin-top:24px; padding-top:18px; border-top:1px solid var(--border);
 
     <div class="panel" style="margin-top:22px">
       <div class="panel-title">&#128269; Diagnóstico Executivo</div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="insight bad"><div class="ititle">&#9888;&#65039; Retrabalho alto (38,5% do tempo)</div>Equipe gasta 38,5% das horas em retrabalho (ajustes pós-vistoria + ajustes de projeto). Meta saudável: &le; 20%.</div>
-        <div class="insight"><div class="ititle">&#128221; Aderência ao registro</div>João Victor registrou só &asymp;49% da jornada esperada. Verificar se está lançando todas as atividades no formulário.</div>
-        <div class="insight"><div class="ititle">&#9889; Foco x Interrupção</div>Aluisio trocou de atividade em 30,5% dos registros &mdash; sinal de fila reativa de demandas Voalle competindo com projetos.</div>
-        <div class="insight"><div class="ititle">&#129309; Dependência de interação</div>Yuri pediu interação em 39% das atividades (principalmente Laelson/cliente). Avaliar gargalo de aprovação.</div>
-        <div class="insight good"><div class="ititle">&#128640; Maior produtor de horas</div>Yuri lidera horas (138h, &asymp;9,2h/dia), Aluisio (115h, &asymp;7,7h/dia). Ambos com aderência saudável (&ge;95%).</div>
-      </div>
+      <div id="pmoDiagnostico" style="display:flex;flex-direction:column;gap:10px"></div>
     </div>
   </div>
 
@@ -444,9 +431,9 @@ function buildMetaBar(score, meta, isTrain){
   const pct = meta ? (score/meta)*100 : 0;
   let fillCls, markerCls, chip;
   if(isTrain){ fillCls='training'; markerCls='train'; chip=`<span class="delta-chip train">\u{1F393} em treinamento</span>`; }
-  else if(delta>=0){ fillCls='ok'; markerCls='up'; chip=`<span class="delta-chip up">\u25B2 +${fmt(delta)} pts \u00B7 ${fmt1(pct)}%</span>`; }
-  else { fillCls = pct>=70?'warn':'bad'; markerCls='down'; chip=`<span class="delta-chip down">\u25BC ${fmt(delta)} pts \u00B7 ${fmt1(pct)}%</span>`; }
-  const lbl = isTrain ? '\u{1F393}' : (delta>=0?'\u2713':'!');
+  else if(delta>=0){ fillCls='ok'; markerCls='up'; chip=`<span class="delta-chip up">▲ +${fmt(delta)} pts · ${fmt1(pct)}%</span>`; }
+  else { fillCls = pct>=70?'warn':'bad'; markerCls='down'; chip=`<span class="delta-chip down">▼ ${fmt(delta)} pts · ${fmt1(pct)}%</span>`; }
+  const lbl = isTrain ? '\u{1F393}' : (delta>=0?'✓':'!');
   const html = `<div class="meta-bar"><div class="track"><div class="fill ${fillCls}" style="width:${scorePos}%"></div></div><div class="meta-mark" style="left:${metaPos}%"></div><div class="marker ${markerCls}" style="left:${Math.min(99,Math.max(1,scorePos))}%" title="Atual: ${fmt(score)} pts">${lbl}</div></div>`;
   return { html, chip };
 }
@@ -455,13 +442,12 @@ function renderKPIs(rows){
   const grid = document.getElementById('kpiGrid');
   const colabs = ['Renato','Edvan','Bernardo Braz'];
   const cards = [];
-
   const total = rows.reduce((s,r)=>s+r.producao,0);
   const totalDias = rows.length;
   const totalMeta = totalDias*META_DIA;
   const totalAvg = totalDias ? total/totalDias : 0;
   const tb = buildMetaBar(total, totalMeta, false);
-  cards.push(`<div class="kpi-card total"><div class="kpi-header"><div class="kpi-name">Pontuação Geral</div><div class="avatar" style="background:linear-gradient(135deg,#38bdf8,#4ade80,#f59e0b)">\u03A3</div></div><div class="kpi-value">${fmt(total)}</div><div class="kpi-label">acumulado \u00B7 ${selectedMonths.size} ${selectedMonths.size===1?'mês':'meses'} \u00B7 ${totalDias} dias trabalhados</div><div class="meta-bar-wrap"><div class="meta-bar-info"><span>Meta: <b>${fmt(totalMeta)}</b> pts</span><span>${tb.chip}</span></div>${tb.html}</div><div class="kpi-stats"><div class="kpi-stat"><div class="num">${fmt(totalAvg)}</div><div class="lbl">média/dia</div></div><div class="kpi-stat"><div class="num">${totalDias}</div><div class="lbl">dias trab.</div></div><div class="kpi-stat"><div class="num">${selectedMonths.size}</div><div class="lbl">meses</div></div></div></div>`);
+  cards.push(`<div class="kpi-card total"><div class="kpi-header"><div class="kpi-name">Pontuação Geral</div><div class="avatar" style="background:linear-gradient(135deg,#38bdf8,#4ade80,#f59e0b)">Σ</div></div><div class="kpi-value">${fmt(total)}</div><div class="kpi-label">acumulado · ${selectedMonths.size} ${selectedMonths.size===1?'mês':'meses'} · ${totalDias} dias trabalhados</div><div class="meta-bar-wrap"><div class="meta-bar-info"><span>Meta: <b>${fmt(totalMeta)}</b> pts</span><span>${tb.chip}</span></div>${tb.html}</div><div class="kpi-stats"><div class="kpi-stat"><div class="num">${fmt(totalAvg)}</div><div class="lbl">média/dia</div></div><div class="kpi-stat"><div class="num">${totalDias}</div><div class="lbl">dias trab.</div></div><div class="kpi-stat"><div class="num">${selectedMonths.size}</div><div class="lbl">meses</div></div></div></div>`);
 
   colabs.forEach(name=>{
     const rs = rows.filter(r=>r.colaborador===name);
@@ -475,7 +461,7 @@ function renderKPIs(rows){
     const isTrain = (name==='Bernardo Braz');
     const bar = buildMetaBar(score, meta, isTrain);
     const trainNote = isTrain ? `<div class="training-note"><span class="ti">\u{1F393}</span><span><b>Em treinamento</b> &mdash; Colaborador em fase de capacitação (integração + NR10). A pontuação inicial inclui dias dedicados a treinamento e acompanhamento de campo, por isso a meta não é aplicável neste período.</span></div>` : '';
-    cards.push(`<div class="kpi-card ${cls}"><div class="kpi-header"><div class="kpi-name">${name}</div><div class="avatar ${cls}">${initial}</div></div><div class="kpi-value">${fmt(score)}</div><div class="kpi-label">acumulado \u00B7 ${dias} dias trabalhados \u00B7 média ${fmt(avg)}/dia</div><div class="meta-bar-wrap"><div class="meta-bar-info"><span>Meta: <b>${fmt(meta)}</b> pts</span><span>${bar.chip}</span></div>${bar.html}</div>${trainNote}<div class="kpi-stats"><div class="kpi-stat"><div class="num">${fmt(rs.reduce((s,r)=>s+r.postes,0))}</div><div class="lbl">postes</div></div><div class="kpi-stat"><div class="num">${fmt(rs.reduce((s,r)=>s+r.cto+r.ceo,0))}</div><div class="lbl">CTO/CEO</div></div><div class="kpi-stat"><div class="num">${fmt1(rs.reduce((s,r)=>s+r.deslocamento,0))}h</div><div class="lbl">desloc.</div></div></div></div>`);
+    cards.push(`<div class="kpi-card ${cls}"><div class="kpi-header"><div class="kpi-name">${name}</div><div class="avatar ${cls}">${initial}</div></div><div class="kpi-value">${fmt(score)}</div><div class="kpi-label">acumulado · ${dias} dias trabalhados · média ${fmt(avg)}/dia</div><div class="meta-bar-wrap"><div class="meta-bar-info"><span>Meta: <b>${fmt(meta)}</b> pts</span><span>${bar.chip}</span></div>${bar.html}</div>${trainNote}<div class="kpi-stats"><div class="kpi-stat"><div class="num">${fmt(rs.reduce((s,r)=>s+r.postes,0))}</div><div class="lbl">postes</div></div><div class="kpi-stat"><div class="num">${fmt(rs.reduce((s,r)=>s+r.cto+r.ceo,0))}</div><div class="lbl">CTO/CEO</div></div><div class="kpi-stat"><div class="num">${fmt1(rs.reduce((s,r)=>s+r.deslocamento,0))}h</div><div class="lbl">desloc.</div></div></div></div>`);
   });
   grid.innerHTML = cards.join('');
 }
@@ -495,8 +481,7 @@ function renderLineChart(rows){
     data:{ labels:dates.map(d=>d.split('-').slice(1).join('/')), datasets },
     options:{ responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
       plugins:{ legend:{labels:{color:'#e5edff'}}, tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmt(c.parsed.y)} pts`}} },
-      scales:{ x:{ticks:{color:'#93a3c4',maxRotation:60,minRotation:45,autoSkip:true,maxTicksLimit:18},grid:{color:'#233152'}}, y:{ticks:{color:'#93a3c4',callback:v=>fmt(v)},grid:{color:'#233152'},beginAtZero:true} }
-    }
+      scales:{ x:{ticks:{color:'#93a3c4',maxRotation:60,minRotation:45,autoSkip:true,maxTicksLimit:18},grid:{color:'#233152'}}, y:{ticks:{color:'#93a3c4',callback:v=>fmt(v)},grid:{color:'#233152'},beginAtZero:true} } }
   });
 }
 
@@ -508,19 +493,14 @@ function renderDoughnut(rows){
     type:'doughnut',
     data:{ labels:Object.keys(sums), datasets:[{ data:Object.values(sums), backgroundColor:['#38bdf8','#4ade80','#f59e0b','#a78bfa'], borderColor:'#131c2f', borderWidth:2 }] },
     options:{ responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{position:'bottom',labels:{color:'#e5edff',padding:12}}, tooltip:{callbacks:{label:c=>{ const t=c.dataset.data.reduce((a,b)=>a+b,0); return `${c.label}: ${fmt(c.parsed)} pts (${t?((c.parsed/t)*100).toFixed(1):0}%)`; }}} }
-    }
+      plugins:{ legend:{position:'bottom',labels:{color:'#e5edff',padding:12}}, tooltip:{callbacks:{label:c=>{ const t=c.dataset.data.reduce((a,b)=>a+b,0); return `${c.label}: ${fmt(c.parsed)} pts (${t?((c.parsed/t)*100).toFixed(1):0}%)`; }}} } }
   });
 }
 
 function renderBar(rows){
   const colabs=['Renato','Edvan','Bernardo Braz'];
   const acc=[],metas=[];
-  colabs.forEach(name=>{
-    const rs=rows.filter(r=>r.colaborador===name);
-    acc.push(rs.reduce((s,r)=>s+r.producao,0));
-    metas.push(rs.length*META_DIA);
-  });
+  colabs.forEach(name=>{ const rs=rows.filter(r=>r.colaborador===name); acc.push(rs.reduce((s,r)=>s+r.producao,0)); metas.push(rs.length*META_DIA); });
   if(barChart) barChart.destroy();
   barChart = new Chart(document.getElementById('barChart'),{
     type:'bar',
@@ -530,8 +510,7 @@ function renderBar(rows){
     ]},
     options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
       plugins:{ legend:{labels:{color:'#e5edff'}}, tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmt(c.parsed.x)} pts`}} },
-      scales:{ x:{ticks:{color:'#93a3c4',callback:v=>fmt(v)},grid:{color:'#233152'},beginAtZero:true}, y:{ticks:{color:'#e5edff'},grid:{display:false}} }
-    }
+      scales:{ x:{ticks:{color:'#93a3c4',callback:v=>fmt(v)},grid:{color:'#233152'},beginAtZero:true}, y:{ticks:{color:'#e5edff'},grid:{display:false}} } }
   });
 }
 
@@ -539,9 +518,9 @@ function renderTable(rows){
   const sorted=[...rows].sort((a,b)=>b.data.localeCompare(a.data));
   document.getElementById('tableBody').innerHTML = sorted.map(r=>{
     const cls=r.colaborador.toLowerCase().split(' ')[0];
-    return `<tr><td>${r.data.split('-').reverse().join('/')}</td><td><span class="tag ${cls}">${r.colaborador}</span></td><td>${(r.atividade||'').slice(0,90)}${(r.atividade||'').length>90?'\u2026':''}</td><td class="num-cell">${fmt(r.postes)}</td><td class="num-cell">${fmt(r.cto)}</td><td class="num-cell">${fmt(r.ceo)}</td><td class="num-cell">${fmt1(r.deslocamento)}</td><td class="num-cell"><b>${fmt(r.producao)}</b></td></tr>`;
+    return `<tr><td>${r.data.split('-').reverse().join('/')}</td><td><span class="tag ${cls}">${r.colaborador}</span></td><td>${(r.atividade||'').slice(0,90)}${(r.atividade||'').length>90?'…':''}</td><td class="num-cell">${fmt(r.postes)}</td><td class="num-cell">${fmt(r.cto)}</td><td class="num-cell">${fmt(r.ceo)}</td><td class="num-cell">${fmt1(r.deslocamento)}</td><td class="num-cell"><b>${fmt(r.producao)}</b></td></tr>`;
   }).join('');
-  document.getElementById('tableInfo').textContent = `${sorted.length} lançamentos \u00B7 ${fmt(sorted.reduce((s,r)=>s+r.producao,0))} pts \u00B7 meta acumulada ${fmt(sorted.length*META_DIA)} pts`;
+  document.getElementById('tableInfo').textContent = `${sorted.length} lançamentos · ${fmt(sorted.reduce((s,r)=>s+r.producao,0))} pts · meta acumulada ${fmt(sorted.length*META_DIA)} pts`;
 }
 
 function refresh(){ const rows=getFiltered(); renderKPIs(rows); renderLineChart(rows); renderDoughnut(rows); renderBar(rows); renderTable(rows); }
@@ -556,62 +535,164 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
     document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(btn.dataset.tab).classList.add('active');
-    if(btn.dataset.tab==='tab-pmo' && !window._pmoRendered) renderPMO();
+    if(btn.dataset.tab==='tab-pmo' && !window._pmoRendered) refreshPMO();
   });
 });
 
-/* ========= PMO TAB ========= */
-const PMO_RANKING = [
-  { pos:1, name:'Yuri Morais de Farias', score:81.4, cls:'Excelente', clsKey:'excel',
-    volume:91.2, eficiencia:87.8, foco:93.7, qualidade:59.6, medal:'\u{1F947}',
-    strong:'Liderança absoluta em VOLUME (100 em horas, registros, protocolos, postes e CTOs). Foco excelente \u2014 apenas 2% de troca de atividade. Aderência ao registro de 115%.',
-    weak:'Retrabalho ainda alto: 32,6% das horas em ajustes pós-vistoria (meta \u226420%). 39% das atividades exigiram interação externa \u2014 sinal de gargalo de aprovação.' },
-  { pos:2, name:'João Victor Britto da Silva', score:69.6, cls:'Bom', clsKey:'bom',
-    volume:18.4, eficiencia:60.9, foco:100, qualidade:99.3, medal:'\u{1F948}',
-    strong:'Melhor pontuação em QUALIDADE (99) e FOCO (100). Apenas 8,5% de retrabalho. Tempo médio por atividade adequado (2,63h). Concentrou 54 km de cabo no cluster 172.',
-    weak:'Volume muito baixo: 23,6h em 6 dias (49% de aderência). Cobertura de só 35% dos dias úteis \u2014 investigar se está em outra alocação. Score baixo de Volume puxa o total.' },
-  { pos:3, name:'Aluisio Felix C. Junior', score:52.8, cls:'Regular', clsKey:'reg',
-    volume:43.2, eficiencia:85.0, foco:79.3, qualidade:16.4, medal:'\u{1F949}',
-    strong:'Excelente em EFICIÊNCIA (85): aderência 95,6%, cobertura 88% dos dias, tempo médio ideal (1,95h). Volume sólido: 289 postes e 77 CTOs.',
-    weak:'Crítico em QUALIDADE (16): 51,8% das horas em retrabalho (limite saudável: 20%). FOCO comprometido \u2014 30,5% de troca de atividade indica fila reativa Voalle interrompendo projetos.' }
-];
+/* ========= PMO TAB (dinâmico com filtro multi-mês) ========= */
+const PMO_DATA = [{"Data":"2026-04-22","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.3333,"Trocou Atividade":true,"Precisou Interação":null,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-20","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":3,"Trocou Atividade":false,"Precisou Interação":null,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-20","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":5,"Trocou Atividade":false,"Precisou Interação":null,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-20","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":4.5667,"Trocou Atividade":false,"Precisou Interação":null,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-20","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.7833,"Trocou Atividade":false,"Precisou Interação":null,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-20","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":5,"Trocou Atividade":true,"Precisou Interação":null,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-22","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1.7833,"Trocou Atividade":false,"Precisou Interação":null,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-22","Colaborador":"Yuri Morais de Farias","Categoria":"Estrutura/Controle Voalle","Horas":4.7833,"Trocou Atividade":false,"Precisou Interação":null,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-22","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":0.3333,"Trocou Atividade":false,"Precisou Interação":null,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-22","Colaborador":"João Victor Britto da Silva","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":4.0333,"Trocou Atividade":true,"Precisou Interação":null,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-22","Colaborador":"João Victor Britto da Silva","Categoria":"Planilhas/Apoio","Horas":2.2167,"Trocou Atividade":false,"Precisou Interação":null,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-22","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.7167,"Trocou Atividade":false,"Precisou Interação":null,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-22","Colaborador":"Aluisio Felix C. Junior","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":3.35,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":5,"KM Cabo":0},{"Data":"2026-04-22","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":2.2333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":0.2667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":7,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":2.8333,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Yuri Morais de Farias","Categoria":"Reunião/Alinhamento","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":2.1667,"Trocou Atividade":true,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.3333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":5,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":0.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":2.5,"Trocou Atividade":true,"Precisou Interação":true,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":0.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Aluisio Felix C. Junior","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":0.55,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":0.3333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Yuri Morais de Farias","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":1.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":42,"KM Cabo":6.273},{"Data":"2026-04-23","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":2,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":3,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":0.3667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-23","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.1833,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":17,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"Yuri Morais de Farias","Categoria":"Reunião/Alinhamento","Horas":1.1667,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1.6667,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"Yuri Morais de Farias","Categoria":"Planilhas/Apoio","Horas":2.5,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"João Victor Britto da Silva","Categoria":"Planilhas/Apoio","Horas":2.1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":2.3333,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.5833,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":5,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":2.3833,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":true,"Protocolos":0,"Postes":137,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"João Victor Britto da Silva","Categoria":"Planilhas/Apoio","Horas":2.5333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":112,"CTOs":1,"KM Cabo":8},{"Data":"2026-04-24","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.75,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste de Projeto","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":1,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.1833,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-24","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1.1667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-27","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":2.2167,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":4,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-27","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":2.1667,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":4,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-27","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":3,"Trocou Atividade":true,"Precisou Interação":true,"É Retrabalho":true,"Protocolos":0,"Postes":25,"CTOs":1,"KM Cabo":0},{"Data":"2026-04-27","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":0.75,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-27","Colaborador":"João Victor Britto da Silva","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":4,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":2,"CTOs":0,"KM Cabo":15.8},{"Data":"2026-04-27","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.4833,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":4,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-27","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":0.3333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-27","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":2.3333,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-27","Colaborador":"Aluisio Felix C. Junior","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":3,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":7,"KM Cabo":0},{"Data":"2026-04-27","Colaborador":"Yuri Morais de Farias","Categoria":"Outras","Horas":1.05,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1.5,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.6167,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":0.7667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":101,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Aluisio Felix C. Junior","Categoria":"Outras","Horas":1,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Yuri Morais de Farias","Categoria":"Outras","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Aluisio Felix C. Junior","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":2.3667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":2,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":0.25,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.5667,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.75,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.75,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":4,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":0.4667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":0.7833,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":42,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Aluisio Felix C. Junior","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":3,"Trocou Atividade":true,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":1,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-29","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.2167,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":4,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-29","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.5,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":5,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-28","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1.5,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-29","Colaborador":"Yuri Morais de Farias","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":2.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":103,"CTOs":3,"KM Cabo":0},{"Data":"2026-04-29","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.5333,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":5,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-29","Colaborador":"Aluisio Felix C. Junior","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":3,"Trocou Atividade":true,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":14,"CTOs":6,"KM Cabo":0},{"Data":"2026-04-27","Colaborador":"João Victor Britto da Silva","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":6.25,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":14.9},{"Data":"2026-04-29","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.3,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-29","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":7,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-29","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":3.3333,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":true,"Protocolos":0,"Postes":22,"CTOs":5,"KM Cabo":12},{"Data":"2026-04-29","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.2167,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":3,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Yuri Morais de Farias","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":0.45,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Aluisio Felix C. Junior","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":3.5,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":10,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":0.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.5,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":3,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.5,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.2667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":4,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Aluisio Felix C. Junior","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":2,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":3,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Yuri Morais de Farias","Categoria":"Desenvolvimento de Projeto/Cluster","Horas":1.25,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Yuri Morais de Farias","Categoria":"Outras","Horas":0.9167,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-30","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Yuri Morais de Farias","Categoria":"Reunião/Alinhamento","Horas":3.3833,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-04-20","Colaborador":"João Victor Britto da Silva","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":2,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":1,"CTOs":0,"KM Cabo":9.5},{"Data":"2026-05-04","Colaborador":"Aluisio Felix C. Junior","Categoria":"Reunião/Alinhamento","Horas":2.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":2,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":4,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"João Victor Britto da Silva","Categoria":"Planilhas/Apoio","Horas":0.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.95,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":2,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":2.0333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":48,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.8333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.5,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":1,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-04","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.8333,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-05","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.4333,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-05","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":0.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-05","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":1.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":15,"KM Cabo":0},{"Data":"2026-05-05","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":2,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-05","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":2.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":5,"CTOs":2,"KM Cabo":0},{"Data":"2026-05-05","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-05","Colaborador":"Yuri Morais de Farias","Categoria":"Planilhas/Apoio","Horas":2.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-05","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.6667,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-05","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":4,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":41,"CTOs":6,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":1,"CTOs":1,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste de Projeto","Horas":4,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":0.45,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":70,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":0.9833,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":13,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":1,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste de Projeto","Horas":3,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":2,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":4,"KM Cabo":0},{"Data":"2026-05-06","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.2667,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":1,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.4333,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":1,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":0.75,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":59,"CTOs":62,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":0.3333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":25,"CTOs":17,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":3.9167,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":115,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste de Projeto","Horas":5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":0.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":9,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.4167,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste de Projeto","Horas":4,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Yuri Morais de Farias","Categoria":"Outras","Horas":0.7333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-07","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste de Projeto","Horas":0.3333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-08","Colaborador":"Aluisio Felix C. Junior","Categoria":"Reunião/Alinhamento","Horas":2.1167,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-08","Colaborador":"Yuri Morais de Farias","Categoria":"Reunião/Alinhamento","Horas":2,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-08","Colaborador":"Yuri Morais de Farias","Categoria":"Reunião/Alinhamento","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-08","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.0667,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-08","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":2,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-08","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste de Projeto","Horas":0.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-08","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.5,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-08","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":3.3,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-08","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste de Projeto","Horas":3,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":45,"CTOs":8,"KM Cabo":0},{"Data":"2026-05-11","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.8,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-11","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1.3333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-11","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":1,"KM Cabo":0},{"Data":"2026-05-11","Colaborador":"João Victor Britto da Silva","Categoria":"Ajuste de Projeto","Horas":0,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":3,"CTOs":0,"KM Cabo":5.77},{"Data":"2026-05-11","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":2,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":176,"CTOs":15,"KM Cabo":0},{"Data":"2026-05-11","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.8667,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":3,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-11","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":1.3,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-11","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":3.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":13,"KM Cabo":0},{"Data":"2026-05-11","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-11","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-11","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste de Projeto","Horas":2.6667,"Trocou Atividade":true,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":3,"KM Cabo":0},{"Data":"2026-05-12","Colaborador":"Aluisio Felix C. Junior","Categoria":"Tratativa Protocolos/Demandas","Horas":1,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":false,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-12","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":2.1333,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":4,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-12","Colaborador":"Aluisio Felix C. Junior","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":0.5833,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-12","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste Pós-Vistoria (Retrabalho)","Horas":1.3333,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":12,"CTOs":3,"KM Cabo":0},{"Data":"2026-05-12","Colaborador":"Yuri Morais de Farias","Categoria":"Ajuste de Projeto","Horas":1.6667,"Trocou Atividade":false,"Precisou Interação":false,"É Retrabalho":true,"Protocolos":0,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-12","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.5833,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":2,"Postes":0,"CTOs":0,"KM Cabo":0},{"Data":"2026-05-12","Colaborador":"Yuri Morais de Farias","Categoria":"Tratativa Protocolos/Demandas","Horas":0.75,"Trocou Atividade":false,"Precisou Interação":true,"É Retrabalho":false,"Protocolos":1,"Postes":0,"CTOs":0,"KM Cabo":0}];
+const PMO_COLABS = ['Aluisio Felix C. Junior','João Victor Britto da Silva','Yuri Morais de Farias'];
+const PMO_COLAB_SHORT = {'Aluisio Felix C. Junior':'Aluisio','João Victor Britto da Silva':'J. Victor','Yuri Morais de Farias':'Yuri'};
+const PMO_CORE_CATS = new Set(['Desenvolvimento de Projeto/Cluster','Tratativa Protocolos/Demandas','Estrutura/Controle Voalle']);
 
-const PMO_KPIS = [
-  ['VOLUME','K01','Horas Lançadas','h','\u2265 7,5h \u00D7 dia',114.77,23.63,138.43],
-  ['VOLUME','K02','Registros de Atividade','un','\u2265 3/dia útil',59,9,99],
-  ['VOLUME','K03','Protocolos Encerrados','un','\u2014',0,0,164],
-  ['VOLUME','K04','Postes Projetados/Ajustados','un','\u2014',289,118,752],
-  ['VOLUME','K05','CTOs Adicionadas/Ajustadas','un','\u2014',77,1,175],
-  ['VOLUME','K06','KM de Cabo Projetado','km','\u2014',12,53.97,6.27],
-  ['EFICIÊNCIA','K07','Aderência ao Registro','%','\u2265 90%',95.6,49.2,115.4],
-  ['EFICIÊNCIA','K08','Cobertura de Dias','%','\u2265 95%',88.2,35.3,88.2],
-  ['EFICIÊNCIA','K09','Tempo Médio por Atividade','h','1,5h\u20133,0h',1.95,2.63,1.4],
-  ['EFICIÊNCIA','K10','% Horas em Atividade Core','%','\u2265 70%',43.3,60.4,51.4],
-  ['FOCO','K11','Taxa de Troca de Atividade','%','\u2264 15%',30.5,11.1,2.0],
-  ['FOCO','K12','% Atividades c/ Interação Externa','%','\u2264 30%',16.9,0,39.4],
-  ['FOCO','K13','Horas em Reuniões','h','\u2264 10% horas',4.62,0,8.55],
-  ['QUALIDADE','K14','% Horas em Retrabalho','%','\u2264 20%',51.8,8.5,32.6],
-  ['QUALIDADE','K15','Horas em Retrabalho','h','\u2014',59.47,2,45.12]
-];
+const pmoAllMonths = [...new Set(PMO_DATA.map(r=>r.Data.slice(0,7)))].sort();
+let pmoSelectedMonths = new Set(pmoAllMonths);
 
-const PMO_CATEGORIES = {
-  'Tratativa Protocolos/Demandas':[28.92,0,65.25],
-  'Ajuste Pós-Vistoria (Retrabalho)':[35.8,2,26.42],
-  'Ajuste de Projeto':[23.67,0,18.7],
-  'Desenvolvimento de Projeto/Cluster':[20.77,14.28,5.87],
-  'Reunião/Alinhamento':[4.62,0,8.55],
-  'Planilhas/Apoio':[0,7.35,5.17]
-};
+const pmoMsTrigger=document.getElementById('pmoMsTrigger');
+const pmoMsPanel=document.getElementById('pmoMsPanel');
+const pmoMsOptions=document.getElementById('pmoMsOptions');
+const pmoMsLabel=document.getElementById('pmoMsLabel');
+
+function pmoBuildOptions(){
+  pmoMsOptions.innerHTML = pmoAllMonths.map(m=>`<label class="ms-option"><input type="checkbox" value="${m}" ${pmoSelectedMonths.has(m)?'checked':''}><span>${MES_NAMES[m]||m}</span></label>`).join('');
+  pmoMsOptions.querySelectorAll('input').forEach(cb=>cb.addEventListener('change',()=>{
+    if(cb.checked) pmoSelectedMonths.add(cb.value); else pmoSelectedMonths.delete(cb.value);
+    pmoUpdateLabel(); refreshPMO();
+  }));
+}
+function pmoUpdateLabel(){
+  if(pmoSelectedMonths.size===0) pmoMsLabel.textContent='Nenhum mês selecionado';
+  else if(pmoSelectedMonths.size===pmoAllMonths.length) pmoMsLabel.textContent='Todos os meses';
+  else if(pmoSelectedMonths.size===1) pmoMsLabel.textContent=MES_NAMES[[...pmoSelectedMonths][0]];
+  else pmoMsLabel.textContent=`${pmoSelectedMonths.size} meses selecionados`;
+}
+pmoMsTrigger.addEventListener('click',()=>{pmoMsTrigger.classList.toggle('open');pmoMsPanel.classList.toggle('open');});
+document.addEventListener('click',e=>{
+  if(!pmoMsTrigger.contains(e.target)&&!pmoMsPanel.contains(e.target)){
+    pmoMsTrigger.classList.remove('open'); pmoMsPanel.classList.remove('open');
+  }
+});
+document.getElementById('pmoMsAll').addEventListener('click',()=>{pmoSelectedMonths=new Set(pmoAllMonths);pmoBuildOptions();pmoUpdateLabel();refreshPMO();});
+document.getElementById('pmoMsNone').addEventListener('click',()=>{pmoSelectedMonths=new Set();pmoBuildOptions();pmoUpdateLabel();refreshPMO();});
+document.getElementById('pmoMsLast3').addEventListener('click',()=>{pmoSelectedMonths=new Set(pmoAllMonths.slice(-3));pmoBuildOptions();pmoUpdateLabel();refreshPMO();});
 
 let pmoRadar, pmoCatChart;
 
-function renderPMO(){
+function pmoWorkDaysInMonth(month){
+  const allDates = PMO_DATA.map(r=>r.Data).sort();
+  const dataMin = allDates[0], dataMax = allDates[allDates.length-1];
+  const [y, m] = month.split('-').map(Number);
+  let count = 0;
+  for(let d=1; d<=31; d++){
+    const date = new Date(y, m-1, d);
+    if(date.getMonth() !== m-1) break;
+    const iso = date.toISOString().slice(0,10);
+    if(iso < dataMin || iso > dataMax) continue;
+    const dow = date.getDay();
+    if(dow >= 1 && dow <= 5) count++;
+  }
+  return count;
+}
+
+function pmoComputeColab(rows, name){
+  const rs = rows.filter(r=>r.Colaborador===name);
+  const horas = rs.reduce((s,r)=>s+(r.Horas||0),0);
+  const reg = rs.length;
+  const dias = new Set(rs.map(r=>r.Data)).size;
+  const protocolos = rs.reduce((s,r)=>s+(r.Protocolos||0),0);
+  const postes = rs.reduce((s,r)=>s+(r.Postes||0),0);
+  const ctos = rs.reduce((s,r)=>s+(r.CTOs||0),0);
+  const km = rs.reduce((s,r)=>s+(r['KM Cabo']||0),0);
+  const retrabH = rs.filter(r=>r['É Retrabalho']).reduce((s,r)=>s+(r.Horas||0),0);
+  const trocas = rs.filter(r=>r['Trocou Atividade']).length;
+  const interacoes = rs.filter(r=>r['Precisou Interação']).length;
+  const reuniaoH = rs.filter(r=>r.Categoria==='Reunião/Alinhamento').reduce((s,r)=>s+(r.Horas||0),0);
+  const coreH = rs.filter(r=>PMO_CORE_CATS.has(r.Categoria)).reduce((s,r)=>s+(r.Horas||0),0);
+  const pctRetrab = horas ? (retrabH/horas)*100 : 0;
+  const pctTroca = reg ? (trocas/reg)*100 : 0;
+  const pctInter = reg ? (interacoes/reg)*100 : 0;
+  const pctReuniao = horas ? (reuniaoH/horas)*100 : 0;
+  const pctCore = horas ? (coreH/horas)*100 : 0;
+  const tempoMedio = reg ? horas/reg : 0;
+  return { name, horas, reg, dias, protocolos, postes, ctos, km, retrabH, trocas, interacoes, reuniaoH, coreH, pctRetrab, pctTroca, pctInter, pctReuniao, pctCore, tempoMedio };
+}
+
+function scoreMin(v, meta){ if(v<=0) return 0; if(v>=meta) return 100; return (v/meta)*100; }
+function scoreMax(v, meta){ if(v<=meta) return 100; return Math.max(0, 100 - ((v-meta)/(2*meta))*100); }
+function scoreRange(v, lo, hi){ if(v>=lo && v<=hi) return 100; if(v<lo) return (v/lo)*100; return Math.max(0, 100 - ((v-hi)/hi)*100); }
+function scoreRel(v, top){ if(top<=0) return 0; return Math.min(100, (v/top)*100); }
+
+function pmoComputeRanking(rows, diasUteis){
+  const ds = PMO_COLABS.map(n=>pmoComputeColab(rows, n));
+  const top = {
+    horas: Math.max(...ds.map(d=>d.horas)),
+    reg: Math.max(...ds.map(d=>d.reg)),
+    protocolos: Math.max(...ds.map(d=>d.protocolos)),
+    postes: Math.max(...ds.map(d=>d.postes)),
+    ctos: Math.max(...ds.map(d=>d.ctos)),
+  };
+  return ds.map(d=>{
+    const volume = (scoreRel(d.horas,top.horas) + scoreRel(d.reg,top.reg) + scoreRel(d.protocolos,top.protocolos) + scoreRel(d.postes,top.postes) + scoreRel(d.ctos,top.ctos)) / 5;
+    const aderencia = d.dias>0 ? (d.horas/(d.dias*8))*100 : 0;
+    const cobertura = diasUteis>0 ? (d.dias/diasUteis)*100 : 0;
+    const eficiencia = (scoreMin(aderencia,90) + scoreMin(cobertura,95) + scoreRange(d.tempoMedio,1.5,3) + scoreMin(d.pctCore,70)) / 4;
+    const foco = (scoreMax(d.pctTroca,15) + scoreMax(d.pctInter,30) + scoreMax(d.pctReuniao,10)) / 3;
+    const qualidade = scoreMax(d.pctRetrab,20);
+    const score = 0.25*volume + 0.25*eficiencia + 0.20*foco + 0.30*qualidade;
+    const cls = score>=80?'Excelente':score>=65?'Bom':score>=50?'Regular':score>=35?'Atenção':'Crítico';
+    const clsKey = score>=80?'excel':score>=65?'bom':'reg';
+    return { ...d, aderencia, cobertura, volume, eficiencia, foco, qualidade, score, cls, clsKey };
+  }).sort((a,b)=>b.score-a.score).map((r,i)=>({...r, pos:i+1, medal:['\u{1F947}','\u{1F948}','\u{1F949}'][i]||''}));
+}
+
+function refreshPMO(){
   window._pmoRendered = true;
-  const order = [PMO_RANKING[1], PMO_RANKING[0], PMO_RANKING[2]];
+  const months = pmoSelectedMonths;
+  const rows = PMO_DATA.filter(r=>months.has(r.Data.slice(0,7)));
+  const monthsArr = [...months].sort();
+  const diasUteis = monthsArr.reduce((s,m)=>s+pmoWorkDaysInMonth(m), 0);
+  const isMulti = monthsArr.length>1;
+
+  document.getElementById('pmoPeriodInfo').textContent =
+    monthsArr.length===0 ? 'Selecione ao menos um mês' :
+    `${monthsArr.map(m=>MES_NAMES[m]||m).join(' + ')} · ${diasUteis} dias úteis`;
+
+  if(rows.length===0){
+    document.getElementById('pmoKpiRow').innerHTML = `<div class="kpi-mini"><span class="lbl">Sem dados</span><span class="val">—</span></div>`;
+    document.getElementById('pmoPodium').innerHTML = '<div style="color:var(--text-dim);text-align:center;padding:20px;grid-column:1/-1">Nenhum mês selecionado</div>';
+    document.getElementById('pmoInsights').innerHTML = '';
+    document.getElementById('pmoKpiBody').innerHTML = '';
+    document.getElementById('pmoDiagnostico').innerHTML = '';
+    if(pmoRadar) pmoRadar.destroy();
+    if(pmoCatChart) pmoCatChart.destroy();
+    return;
+  }
+
+  const totalH = rows.reduce((s,r)=>s+(r.Horas||0),0);
+  const totalReg = rows.length;
+  const totalProto = rows.reduce((s,r)=>s+(r.Protocolos||0),0);
+  const totalPostes = rows.reduce((s,r)=>s+(r.Postes||0),0);
+  const totalCtos = rows.reduce((s,r)=>s+(r.CTOs||0),0);
+  const totalKm = rows.reduce((s,r)=>s+(r['KM Cabo']||0),0);
+  const retrabH = rows.filter(r=>r['É Retrabalho']).reduce((s,r)=>s+(r.Horas||0),0);
+  const pctRetrab = totalH ? (retrabH/totalH)*100 : 0;
+  const horasMes = isMulti ? totalH/monthsArr.length : null;
+
+  const retrabCls = pctRetrab<=20?'':'bad';
+  document.getElementById('pmoKpiRow').innerHTML = `
+    <div class="kpi-mini"><span class="lbl">⏱️ Horas Lançadas</span><span class="val">${fmt1(totalH)}h</span><span class="sub">${isMulti?`média ${fmt1(horasMes)}h/mês · `:''}${totalReg} registros</span></div>
+    <div class="kpi-mini"><span class="lbl">\u{1F4CB} Protocolos</span><span class="val">${fmt(totalProto)}</span><span class="sub">encerrados/tratados</span></div>
+    <div class="kpi-mini ${retrabCls}"><span class="lbl">\u{1F504} % Retrabalho</span><span class="val">${fmt1(pctRetrab)}%</span><span class="sub">meta ≤ 20% · ${pctRetrab<=20?'✓ ok':'⚠️ acima'}</span></div>
+    <div class="kpi-mini"><span class="lbl">\u{1F6E3}️ KM de Cabo</span><span class="val">${fmt1(totalKm)} km</span><span class="sub">projetado</span></div>
+    <div class="kpi-mini"><span class="lbl">\u{1F4E6} Postes / CTOs</span><span class="val">${fmt(totalPostes)} / ${fmt(totalCtos)}</span><span class="sub">total produzido</span></div>
+  `;
+
+  const ranking = pmoComputeRanking(rows, diasUteis);
+  const top3 = [ranking[1], ranking[0], ranking[2]].filter(Boolean);
   const cardCls = ['second','first','third'];
-  document.getElementById('pmoPodium').innerHTML = order.map((p,i)=>{
+  document.getElementById('pmoPodium').innerHTML = top3.map((p,i)=>{
     const pillars = [['Volume',p.volume,'#38bdf8'],['Eficiência',p.eficiencia,'#4ade80'],['Foco',p.foco,'#a78bfa'],['Qualidade',p.qualidade,'#f59e0b']];
-    const pillarsHtml = `<div class="pillar-bars" style="margin-top:14px">${pillars.map(([n,v,c])=>`<div class="pillar-row"><span class="pname">${n}</span><div class="ptrack"><div class="pfill" style="width:${v}%;background:${c}"></div></div><span class="pval">${fmt1(v)}</span></div>`).join('')}</div>`;
+    const pillarsHtml = `<div class="pillar-bars" style="margin-top:14px">${pillars.map(([n,v,c])=>`<div class="pillar-row"><span class="pname">${n}</span><div class="ptrack"><div class="pfill" style="width:${Math.min(100,v)}%;background:${c}"></div></div><span class="pval">${fmt1(v)}</span></div>`).join('')}</div>`;
     return `<div class="podium-card ${cardCls[i]}"><div class="podium-medal">${p.medal}</div><div class="podium-pos">${p.pos}º LUGAR</div><div class="podium-name">${p.name}</div><div class="podium-score">${fmt1(p.score)} <span style="font-size:14px;color:var(--text-dim);font-weight:600">pts</span></div><span class="podium-cls ${p.clsKey}">${p.cls}</span>${pillarsHtml}</div>`;
   }).join('');
 
@@ -619,47 +700,89 @@ function renderPMO(){
   pmoRadar = new Chart(document.getElementById('pmoRadar'),{
     type:'radar',
     data:{ labels:['Volume','Eficiência','Foco','Qualidade'],
-      datasets: PMO_RANKING.map(p=>({
-        label:p.name.split(' ').slice(0,2).join(' '),
+      datasets: ranking.map(p=>({
+        label: PMO_COLAB_SHORT[p.name],
         data:[p.volume,p.eficiencia,p.foco,p.qualidade],
-        borderColor:{1:'#fbbf24',2:'#38bdf8',3:'#f87171'}[p.pos],
-        backgroundColor:{1:'rgba(251,191,36,0.15)',2:'rgba(56,189,248,0.15)',3:'rgba(248,113,113,0.15)'}[p.pos],
+        borderColor: {1:'#fbbf24',2:'#38bdf8',3:'#f87171'}[p.pos] || '#94a3b8',
+        backgroundColor: {1:'rgba(251,191,36,0.15)',2:'rgba(56,189,248,0.15)',3:'rgba(248,113,113,0.15)'}[p.pos] || 'rgba(148,163,184,0.10)',
         borderWidth:2, pointRadius:4
       })) },
     options:{ responsive:true, maintainAspectRatio:false,
       plugins:{ legend:{labels:{color:'#e5edff'}}, tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmt1(c.parsed.r)} pts`}} },
-      scales:{ r:{ min:0,max:100,
-        angleLines:{color:'#233152'}, grid:{color:'#233152'},
-        pointLabels:{color:'#e5edff',font:{size:12,weight:'600'}},
-        ticks:{color:'#93a3c4',backdropColor:'transparent',stepSize:25}
-      } } }
+      scales:{ r:{ min:0,max:100, angleLines:{color:'#233152'}, grid:{color:'#233152'}, pointLabels:{color:'#e5edff',font:{size:12,weight:'600'}}, ticks:{color:'#93a3c4',backdropColor:'transparent',stepSize:25} } } }
   });
 
-  const cats = Object.keys(PMO_CATEGORIES);
-  const catColors = ['#38bdf8','#f87171','#fbbf24','#4ade80','#a78bfa','#94a3b8'];
+  const allCats = [...new Set(rows.map(r=>r.Categoria).filter(Boolean))];
+  const catColors = ['#38bdf8','#f87171','#fbbf24','#4ade80','#a78bfa','#94a3b8','#fb7185','#22d3ee','#84cc16'];
   if(pmoCatChart) pmoCatChart.destroy();
   pmoCatChart = new Chart(document.getElementById('pmoCatChart'),{
     type:'bar',
-    data:{ labels:['Aluisio','J. Victor','Yuri'],
-      datasets: cats.map((cat,i)=>({
-        label:cat, data:PMO_CATEGORIES[cat],
-        backgroundColor:catColors[i]+'cc', borderColor:catColors[i], borderWidth:1
+    data:{ labels: PMO_COLABS.map(n=>PMO_COLAB_SHORT[n]),
+      datasets: allCats.map((cat,i)=>({
+        label:cat,
+        data: PMO_COLABS.map(n=>rows.filter(r=>r.Colaborador===n && r.Categoria===cat).reduce((s,r)=>s+(r.Horas||0),0)),
+        backgroundColor:catColors[i%catColors.length]+'cc', borderColor:catColors[i%catColors.length], borderWidth:1
       })) },
     options:{ responsive:true, maintainAspectRatio:false, indexAxis:'y',
       plugins:{ legend:{position:'bottom',labels:{color:'#e5edff',boxWidth:10,font:{size:11}}}, tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fmt1(c.parsed.x)}h`}} },
-      scales:{ x:{stacked:true,ticks:{color:'#93a3c4',callback:v=>v+'h'},grid:{color:'#233152'}}, y:{stacked:true,ticks:{color:'#e5edff'},grid:{display:false}} }
-    }
+      scales:{ x:{stacked:true,ticks:{color:'#93a3c4',callback:v=>v+'h'},grid:{color:'#233152'}}, y:{stacked:true,ticks:{color:'#e5edff'},grid:{display:false}} } }
   });
 
-  document.getElementById('pmoInsights').innerHTML = PMO_RANKING.map(p=>`<div class="insight good"><div class="ititle">${p.medal} ${p.name} \u2014 Pontos fortes</div>${p.strong}</div><div class="insight bad"><div class="ititle">${p.medal} ${p.name} \u2014 Atenção</div>${p.weak}</div>`).join('');
+  document.getElementById('pmoInsights').innerHTML = ranking.map(p=>{
+    const strengths = [], weaknesses = [];
+    if(p.volume>=70) strengths.push(`Volume forte (${fmt1(p.volume)} pts)`);
+    else if(p.volume<40) weaknesses.push(`Volume baixo (${fmt1(p.volume)} pts)`);
+    if(p.eficiencia>=80) strengths.push(`Eficiência alta — aderência ${fmt1(p.aderencia)}%, cobertura ${fmt1(p.cobertura)}%`);
+    else if(p.eficiencia<60) weaknesses.push(`Eficiência baixa — aderência ${fmt1(p.aderencia)}%, cobertura ${fmt1(p.cobertura)}%`);
+    if(p.foco>=80) strengths.push(`Foco excelente — apenas ${fmt1(p.pctTroca)}% de troca de atividade`);
+    else if(p.foco<60) weaknesses.push(`Foco comprometido — ${fmt1(p.pctTroca)}% de troca, ${fmt1(p.pctInter)}% c/ interação externa`);
+    if(p.qualidade>=80) strengths.push(`Qualidade alta — apenas ${fmt1(p.pctRetrab)}% de retrabalho`);
+    else if(p.qualidade<50) weaknesses.push(`Qualidade crítica — ${fmt1(p.pctRetrab)}% das horas em retrabalho (meta ≤20%)`);
+    return `<div class="insight good"><div class="ititle">${p.medal} ${p.name} — Pontos fortes</div>${strengths.length?strengths.join('. ')+'.':'Sem destaques no período filtrado.'}</div><div class="insight bad"><div class="ititle">${p.medal} ${p.name} — Atenção</div>${weaknesses.length?weaknesses.join('. ')+'.':'Sem alertas significativos no período filtrado.'}</div>`;
+  }).join('');
 
   const pilarColors = {'VOLUME':'#38bdf8','EFICIÊNCIA':'#4ade80','FOCO':'#a78bfa','QUALIDADE':'#f59e0b'};
-  document.getElementById('pmoKpiBody').innerHTML = PMO_KPIS.map(k=>{
+  const aluD = ranking.find(r=>r.name===PMO_COLABS[0]);
+  const jvD = ranking.find(r=>r.name===PMO_COLABS[1]);
+  const yuD = ranking.find(r=>r.name===PMO_COLABS[2]);
+  const KPIs = [
+    ['VOLUME','K01','Horas Lançadas','h','≥ 7,5h × dia',aluD.horas,jvD.horas,yuD.horas],
+    ['VOLUME','K02','Registros de Atividade','un','≥ 3/dia útil',aluD.reg,jvD.reg,yuD.reg],
+    ['VOLUME','K03','Protocolos Encerrados','un','—',aluD.protocolos,jvD.protocolos,yuD.protocolos],
+    ['VOLUME','K04','Postes Projetados/Ajustados','un','—',aluD.postes,jvD.postes,yuD.postes],
+    ['VOLUME','K05','CTOs Adicionadas/Ajustadas','un','—',aluD.ctos,jvD.ctos,yuD.ctos],
+    ['VOLUME','K06','KM de Cabo Projetado','km','—',aluD.km,jvD.km,yuD.km],
+    ['EFICIÊNCIA','K07','Aderência ao Registro','%','≥ 90%',aluD.aderencia,jvD.aderencia,yuD.aderencia],
+    ['EFICIÊNCIA','K08','Cobertura de Dias','%','≥ 95%',aluD.cobertura,jvD.cobertura,yuD.cobertura],
+    ['EFICIÊNCIA','K09','Tempo Médio por Atividade','h','1,5h–3,0h',aluD.tempoMedio,jvD.tempoMedio,yuD.tempoMedio],
+    ['EFICIÊNCIA','K10','% Horas em Atividade Core','%','≥ 70%',aluD.pctCore,jvD.pctCore,yuD.pctCore],
+    ['FOCO','K11','Taxa de Troca de Atividade','%','≤ 15%',aluD.pctTroca,jvD.pctTroca,yuD.pctTroca],
+    ['FOCO','K12','% Atividades c/ Interação Externa','%','≤ 30%',aluD.pctInter,jvD.pctInter,yuD.pctInter],
+    ['FOCO','K13','Horas em Reuniões','h','≤ 10% horas',aluD.reuniaoH,jvD.reuniaoH,yuD.reuniaoH],
+    ['QUALIDADE','K14','% Horas em Retrabalho','%','≤ 20%',aluD.pctRetrab,jvD.pctRetrab,yuD.pctRetrab],
+    ['QUALIDADE','K15','Horas em Retrabalho','h','—',aluD.retrabH,jvD.retrabH,yuD.retrabH]
+  ];
+  document.getElementById('pmoKpiBody').innerHTML = KPIs.map(k=>{
     const [pilar,cod,ind,un,meta,a,j,y] = k;
     const f = v => typeof v!=='number' ? v : (un==='%'?fmt1(v)+'%':(un==='h'||un==='km')?fmt1(v):fmt(v));
     return `<tr><td><span class="tag" style="background:${pilarColors[pilar]}22;color:${pilarColors[pilar]}">${pilar}</span></td><td style="color:var(--text-dim);font-weight:700">${cod}</td><td>${ind}</td><td style="color:var(--text-dim)">${un}</td><td style="color:var(--text-dim);font-size:12px">${meta}</td><td class="num-cell">${f(a)}</td><td class="num-cell">${f(j)}</td><td class="num-cell">${f(y)}</td></tr>`;
   }).join('');
+
+  const diags = [];
+  if(pctRetrab>20) diags.push({cls:'bad', t:`⚠️ Retrabalho alto (${fmt1(pctRetrab)}% do tempo)`, d:`Equipe gasta ${fmt1(pctRetrab)}% das horas em retrabalho. Meta saudável: ≤ 20%.`});
+  else diags.push({cls:'good', t:`✓ Retrabalho dentro da meta`, d:`${fmt1(pctRetrab)}% de retrabalho — abaixo do limite de 20%.`});
+  ranking.forEach(p=>{
+    if(p.aderencia<70 && p.dias>0) diags.push({cls:'', t:`\u{1F4DD} ${PMO_COLAB_SHORT[p.name]} — aderência baixa`, d:`Registrou só ${fmt1(p.aderencia)}% da jornada esperada. Verificar se está lançando todas as atividades.`});
+    if(p.pctTroca>20) diags.push({cls:'', t:`⚡ ${PMO_COLAB_SHORT[p.name]} — muita troca de atividade`, d:`Trocou de atividade em ${fmt1(p.pctTroca)}% dos registros — sinal de fila reativa interrompendo projetos.`});
+    if(p.pctInter>30) diags.push({cls:'', t:`\u{1F91D} ${PMO_COLAB_SHORT[p.name]} — dependência de interação`, d:`Precisou de interação externa em ${fmt1(p.pctInter)}% das atividades. Avaliar gargalo de aprovação.`});
+  });
+  const topH = [...ranking].sort((a,b)=>b.horas-a.horas)[0];
+  if(topH && topH.horas>0) diags.push({cls:'good', t:`\u{1F680} Maior produtor de horas`, d:`${PMO_COLAB_SHORT[topH.name]} lidera com ${fmt1(topH.horas)}h (${fmt1(topH.dias?topH.horas/topH.dias:0)}h/dia).`});
+
+  document.getElementById('pmoDiagnostico').innerHTML = diags.map(d=>`<div class="insight ${d.cls}"><div class="ititle">${d.t}</div>${d.d}</div>`).join('');
 }
+
+pmoBuildOptions(); pmoUpdateLabel();
 </script>
 </body>
 </html>
